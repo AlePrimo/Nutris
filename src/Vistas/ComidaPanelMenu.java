@@ -125,7 +125,7 @@ public class ComidaPanelMenu extends javax.swing.JPanel {
 //        comidaPanelAdv.setVisible(true);
 //        comidaPanel.setVisible(false);
 //        setVisible(false);
-        cardLayout.show(comidaPanelMain, "comidaAdv");
+        cardLayout.show(comidaPanelMain, "comidaDieta");
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

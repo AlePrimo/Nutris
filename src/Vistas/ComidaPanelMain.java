@@ -32,7 +32,7 @@ public class ComidaPanelMain extends javax.swing.JPanel {
 //        comidaPanelAdv = new ComidaPanelAdv(this);
         add(comidaPanelMenu, "comidaMenu");
         add(comidaPanel, "comidaBas");
-        add(comidaPanel, "comidaDieta");
+        add(comidaDietaPanel, "comidaDieta");
 //        add(comidaPanelAdv, "comidaAdv");
         cardLayout = (CardLayout) getLayout();
         cardLayout.show(this, "comidaMenu");

@@ -111,7 +111,7 @@ public class Dieta {
 
     @Override
     public String toString() {
-        return "idDieta=" + idDieta + ", nombre=" + nombre + ", paciente=" + paciente + ", fechaInicio=" + fechaInicio + ", fechaFinal=" + fechaFinal + ", pesoInicial=" + pesoInicial + ", pesoActual=" + pesoActual + ", estado=" + estado;
+        return idDieta + "-" + nombre + "||" + (estado?"Terminada":"En Curso");
     }
     
     

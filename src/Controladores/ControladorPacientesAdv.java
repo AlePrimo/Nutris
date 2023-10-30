@@ -13,6 +13,7 @@ import Entidades.PacienteExtendido;
 import Util.ColorRGBError;
 import Util.Efecto;
 import Util.ManejadorAnimacionLBL;
+import Util.SetConnValues;
 import Util.Validador;
 import Vistas.PacientePanelAdv;
 import Vistas.PacientePanelMain;
@@ -49,7 +50,7 @@ import nutris.Conexion;
  */
 public class ControladorPacientesAdv {
     
-    private String driverDB = "mariadb";
+    private String driverDB = SetConnValues.getTipoDB();
 
     private final PacientePanelMain pacientePanelMain;
     private final PacientePanelAdv pacientePanelAdv;

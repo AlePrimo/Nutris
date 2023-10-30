@@ -11,8 +11,11 @@ import Util.AnimacionLBL;
 import Util.ColorRGBError;
 import Util.Efecto;
 import Util.ManejadorAnimacionLBL;
+import Util.SetConnValues;
 import Util.Validador;
 import Vistas.ComidaPanel;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +31,7 @@ import nutris.Conexion;
  * @author Administrador
  */
 public class ControladorComida {
-    private String driverDB = "mariadb";
+    private String driverDB = SetConnValues.getTipoDB();
 
     private final ComidaPanel comidaPanel;
     private Comida comida;
@@ -498,6 +501,18 @@ public class ControladorComida {
         }
         isOk = isOkCodComida && isOkCalorias && isOkNombre && jCheckBoxEstado.isSelected();
         jButtonNuevo.setEnabled(isOk);
+    }
+
+    public void labelVolverMouseClicked(MouseEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void ButtonLimpiarFormActionPerformed(ActionEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setComidaForm(Comida c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

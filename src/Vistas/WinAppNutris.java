@@ -5,15 +5,9 @@
  */
 package Vistas;
 
-import Util.AnimacionPNL;
-import com.formdev.flatlaf.FlatLaf;
-import com.formdev.flatlaf.fonts.jetbrains_mono.FlatJetBrainsMonoFont;
-import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.util.concurrent.atomic.AtomicBoolean;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 
 /**
  *

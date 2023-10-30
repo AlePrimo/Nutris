@@ -6,6 +6,7 @@
 package Vistas;
 
 import Controladores.ControladorComida;
+import Entidades.Comida;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -17,13 +18,21 @@ import javax.swing.JTextField;
  * @author Administrador
  */
 public class ComidaPanel extends java.awt.Panel {
+    private ComidaPanelMain comidaPanelMain;
     private ControladorComida controladorComida;
+    private int desdePanel;
     /**
      * Creates new form ComidaPanel
      */
-    public ComidaPanel() {
+    public ComidaPanel(ComidaPanelMain comidaPanelMain) {
         initComponents();
+        this.comidaPanelMain = comidaPanelMain;
         controladorComida = new ControladorComida(this);
+        desdePanel = 0;
+    }
+    
+    public void setComidaForm(Comida c) {
+        controladorComida.setComidaForm(c);
     }
 
     /**
@@ -569,11 +578,11 @@ public class ComidaPanel extends java.awt.Panel {
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jLabelVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVolverMouseClicked
-        controladorDieta.labelVolverMouseClicked(evt);
+        controladorComida.labelVolverMouseClicked(evt);
     }//GEN-LAST:event_jLabelVolverMouseClicked
 
     private void jButtonLimpiarFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarFormActionPerformed
-        controladorDieta.ButtonLimpiarFormActionPerformed(evt);
+        controladorComida.ButtonLimpiarFormActionPerformed(evt);
     }//GEN-LAST:event_jButtonLimpiarFormActionPerformed
 
 
@@ -604,7 +613,11 @@ public class ComidaPanel extends java.awt.Panel {
     private javax.swing.JTextField jTextFieldCodigoComida;
     private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
-
+    
+    public JButton getjButtonLimpiarForm() {
+        return jButtonLimpiarForm;
+    }
+    
     public JButton getjButtonBuscar() {
         return jButtonBuscar;
     }
@@ -624,21 +637,25 @@ public class ComidaPanel extends java.awt.Panel {
     public JButton getjButtonSalir() {
         return jButtonSalir;
     }
-
-    public JLabel getjLabelCalorias() {
-        return jLabelCalorias;
+    
+    public JLabel getjLabelVolver() {
+        return jLabelVolver;
     }
 
     public JLabel getjLabelCodigoComida() {
         return jLabelCodigoComida;
     }
+    
+    public JLabel getjLabelNombre() {
+        return jLabelNombre;
+    }
+    
+    public JLabel getjLabelCalorias() {
+        return jLabelCalorias;
+    }
 
     public JLabel getjLabelDetalle() {
         return jLabelDetalle;
-    }
-
-    public JLabel getjLabelNombre() {
-        return jLabelNombre;
     }
 
     public JLabel getjLabelEstado() {
@@ -664,5 +681,19 @@ public class ComidaPanel extends java.awt.Panel {
     public JCheckBox getjCheckBoxEstado() {
         return jCheckBoxEstado;
     }
+
+    public ComidaPanelMain getComidaPanelMain() {
+        return comidaPanelMain;
+    }
+
+    public int getDesdePanel() {
+        return desdePanel;
+    }
+
+    public void setDesdePanel(int desdePanel) {
+        this.desdePanel = desdePanel;
+    }
+    
+    
 
 }

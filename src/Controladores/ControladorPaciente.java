@@ -10,6 +10,7 @@ import Entidades.Paciente;
 import Util.ColorRGBError;
 import Util.Efecto;
 import Util.ManejadorAnimacionLBL;
+import Util.SetConnValues;
 import Util.Validador;
 import Vistas.PacientePanel;
 import Vistas.PacientePanelMain;
@@ -36,7 +37,7 @@ import nutris.Conexion;
  */
 public class ControladorPaciente {
     
-    private String driverDB = "mariadb";
+    private String driverDB = SetConnValues.getTipoDB();
 
     private final PacientePanel pacientePanel;
     private PacientePanelMain pacientePanelMain;
@@ -433,6 +434,7 @@ public class ControladorPaciente {
     }
 
     public void nuevoPacienteActionPerformed(java.awt.event.ActionEvent evt) {
+        paciente = new Paciente();
         paciente.setDni(jTextFieldDni.getText());
         paciente.setApellido(jTextFieldApellido.getText());
         paciente.setNombre(jTextFieldNombre.getText());

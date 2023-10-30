@@ -26,8 +26,8 @@ public class ComidaPanelMain extends javax.swing.JPanel {
     
     private void CrearComidaPaneles(){
         comidaPanelMenu = new ComidaPanelMenu(this);
-        comidaPanel = new ComidaPanel();
-//        comidaPanelAdv = new ComidaPanelAdv();
+        comidaPanel = new ComidaPanel(this);
+//        comidaPanelAdv = new ComidaPanelAdv(this);
         add(comidaPanelMenu, "comidaMenu");
         add(comidaPanel, "comidaBas");
 //        add(comidaPanelAdv, "comidaAdv");

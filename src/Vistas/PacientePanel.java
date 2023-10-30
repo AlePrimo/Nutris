@@ -31,7 +31,6 @@ public class PacientePanel extends java.awt.Panel {
         initComponents();
         this.pacientePanelMain = pacientePanelMain;
         controladorPaciente = new ControladorPaciente(this);
-        System.out.println("desdePAnel");
         desdePanel = 0;
     }
 

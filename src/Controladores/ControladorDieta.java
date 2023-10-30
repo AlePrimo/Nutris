@@ -13,6 +13,7 @@ import Util.ColorRGBError;
 import Util.Efecto;
 import Util.IMC;
 import Util.ManejadorAnimacionLBL;
+import Util.SetConnValues;
 import Util.Validador;
 import Vistas.DietaPanel;
 import Vistas.DietaPanelMain;
@@ -44,7 +45,7 @@ import nutris.Conexion;
  */
 public class ControladorDieta {
     
-    private String driverDB = "mariadb;
+    private String driverDB = SetConnValues.getTipoDB();
 
     private DietaPanelMain dietaPanelMain;
     private final DietaPanel dietaPanel;

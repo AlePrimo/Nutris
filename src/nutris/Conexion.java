@@ -50,7 +50,7 @@ public class Conexion {
         }
     }
 
-    public static void getConnection() {
+    private static void getConnection() {
         String URL = "jdbc:mariadb://localhost:3306/";
         String DB = "nutris";
         String USUARIO = "root";

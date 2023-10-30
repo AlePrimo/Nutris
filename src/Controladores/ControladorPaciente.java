@@ -35,6 +35,8 @@ import nutris.Conexion;
  * @author Administrador
  */
 public class ControladorPaciente {
+    
+    private String driverDB = "mysql";
 
     private final PacientePanel pacientePanel;
     private PacientePanelMain pacientePanelMain;
@@ -403,7 +405,7 @@ public class ControladorPaciente {
     public void buscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {
         PacienteData pacienteData = null;
         try {
-            pacienteData = new PacienteData(Conexion.getConexion());
+            pacienteData = new PacienteData(Conexion.getConexion(driverDB));
         } catch (SQLException ex) {
 //            Logger.getLogger(PacientePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -447,7 +449,7 @@ public class ControladorPaciente {
         paciente.setEstado(jCheckBoxEstado.isSelected());
         PacienteData pacienteData = null;
         try {
-            pacienteData = new PacienteData(Conexion.getConexion());
+            pacienteData = new PacienteData(Conexion.getConexion(driverDB));
         } catch (SQLException ex) {
             Logger.getLogger(PacientePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -459,7 +461,7 @@ public class ControladorPaciente {
     public void eliminarPacienteActionPerformed(java.awt.event.ActionEvent evt) {
         PacienteData pacienteData = null;
         try {
-            pacienteData = new PacienteData(Conexion.getConexion());
+            pacienteData = new PacienteData(Conexion.getConexion(driverDB));
         } catch (SQLException ex) {
             Logger.getLogger(PacientePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -485,7 +487,7 @@ public class ControladorPaciente {
         paciente.setEstado(jCheckBoxEstado.isSelected());
         PacienteData pacienteData = null;
         try {
-            pacienteData = new PacienteData(Conexion.getConexion());
+            pacienteData = new PacienteData(Conexion.getConexion(driverDB));
         } catch (SQLException ex) {
             Logger.getLogger(PacientePanel.class.getName()).log(Level.SEVERE, null, ex);
         }

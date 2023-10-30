@@ -28,6 +28,7 @@ import nutris.Conexion;
  * @author Administrador
  */
 public class ControladorComida {
+    private String driverDB = "mysql";
 
     private final ComidaPanel comidaPanel;
     private Comida comida;
@@ -221,7 +222,7 @@ public class ControladorComida {
     public void buscarComidaActionPerformed(java.awt.event.ActionEvent evt) {
         ComidaData comidaData = null;
         try {
-            comidaData = new ComidaData(Conexion.getConexion());
+            comidaData = new ComidaData(Conexion.getConexion(driverDB));
         } catch (SQLException ex) {
 //            Logger.getLogger(ComidaPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -249,7 +250,7 @@ public class ControladorComida {
         comida.setEstado(jCheckBoxEstado.isSelected());
         ComidaData comidaData = null;
         try {
-            comidaData = new ComidaData(Conexion.getConexion());
+            comidaData = new ComidaData(Conexion.getConexion(driverDB));
         } catch (SQLException ex) {
             Logger.getLogger(ComidaPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -261,7 +262,7 @@ public class ControladorComida {
     public void eliminarComidaActionPerformed(java.awt.event.ActionEvent evt) {
         ComidaData comidaData = null;
         try {
-            comidaData = new ComidaData(Conexion.getConexion());
+            comidaData = new ComidaData(Conexion.getConexion(driverDB));
         } catch (SQLException ex) {
             Logger.getLogger(ComidaPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -278,7 +279,7 @@ public class ControladorComida {
         comida.setEstado(jCheckBoxEstado.isSelected());
         ComidaData comidaData = null;
         try {
-            comidaData = new ComidaData(Conexion.getConexion());
+            comidaData = new ComidaData(Conexion.getConexion(driverDB));
         } catch (SQLException ex) {
             Logger.getLogger(ComidaPanel.class.getName()).log(Level.SEVERE, null, ex);
         }

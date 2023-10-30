@@ -48,6 +48,8 @@ import nutris.Conexion;
  * @author Administrador
  */
 public class ControladorPacientesAdv {
+    
+    private String driverDB = "mysql";
 
     private final PacientePanelMain pacientePanelMain;
     private final PacientePanelAdv pacientePanelAdv;
@@ -419,7 +421,7 @@ public class ControladorPacientesAdv {
     public void buscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {
         PacienteData pacienteData = null;
         try {
-            pacienteData = new PacienteData(Conexion.getConexion());//            Logger.getLogger(FormPacientes.class.getName()).log(Level.SEVERE, null, ex);
+            pacienteData = new PacienteData(Conexion.getConexion(driverDB));//            Logger.getLogger(FormPacientes.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ControladorPacientesAdv.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -624,8 +626,8 @@ public class ControladorPacientesAdv {
         DietaData dietaData = null;
         CardLayout cardLayout;
         try {
-            pacienteData = new PacienteData(Conexion.getConexion());
-            dietaData = new DietaData(Conexion.getConexion());
+            pacienteData = new PacienteData(Conexion.getConexion(driverDB));
+            dietaData = new DietaData(Conexion.getConexion(driverDB));
         } catch (SQLException ex) {
             Logger.getLogger(PacientePanelAdv.class.getName()).log(Level.SEVERE, null, ex);
         }

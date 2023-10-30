@@ -26,9 +26,19 @@ public class Conexion {
     private Conexion() {
     }
 
-    public static Connection getConexion() throws SQLException {
+    public static Connection getConexion(String driverDB) throws SQLException {
+        if (driverDB.equals("mysql")) {
+            mysqlConexion();
+        } else if (driverDB.equals("mariadb")) {
+            getConnection();
+        }
+        return connection;
+    }
+
+    private static void mysqlConexion() throws SQLException {
         Properties properties = new Properties();
         connection = null;
+
         try {
             properties.load(new FileInputStream("src/config/database.properties"));
             String url = properties.getProperty("db.url");
@@ -38,10 +48,9 @@ public class Conexion {
         } catch (IOException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return connection;
     }
 
-    public static Connection getConnection() {
+    public static void getConnection() {
         String URL = "jdbc:mariadb://localhost:3306/";
         String DB = "nutris";
         String USUARIO = "root";
@@ -56,6 +65,5 @@ public class Conexion {
                 JOptionPane.showMessageDialog(null, "Error al cargar los drivers " + ex.getMessage());
             }
         }
-        return connection;
     }
 }

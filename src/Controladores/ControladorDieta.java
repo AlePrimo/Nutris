@@ -9,7 +9,6 @@ import AccesoADatos.DietaData;
 import AccesoADatos.PacienteData;
 import Entidades.Dieta;
 import Entidades.Paciente;
-import Util.AnimacionLBL;
 import Util.ColorRGBError;
 import Util.Efecto;
 import Util.IMC;
@@ -32,8 +31,6 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -46,6 +43,8 @@ import nutris.Conexion;
  * @author Administrador
  */
 public class ControladorDieta {
+    
+    private String driverDB = "mysql";
 
     private DietaPanelMain dietaPanelMain;
     private final DietaPanel dietaPanel;
@@ -203,7 +202,7 @@ public class ControladorDieta {
     private void cargarComboBoxPaciente() {
         PacienteData pacienteData = null;
         try {
-            pacienteData = new PacienteData(Conexion.getConexion());
+            pacienteData = new PacienteData(Conexion.getConexion(driverDB));
         } catch (SQLException ex) {
             Logger.getLogger(ControladorDieta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -363,7 +362,7 @@ public class ControladorDieta {
     public void buttonBuscarActionPerformed(ActionEvent evt) {
         DietaData dietaData = null;
         try {
-            dietaData = new DietaData(Conexion.getConexion());
+            dietaData = new DietaData(Conexion.getConexion(driverDB));
         } catch (SQLException ex) {
 //            Logger.getLogger(PacientePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -390,7 +389,7 @@ public class ControladorDieta {
     public void eliminarDietaActionPerformed(java.awt.event.ActionEvent evt) {
         DietaData dietaData = null;
         try {
-            dietaData = new DietaData(Conexion.getConexion());
+            dietaData = new DietaData(Conexion.getConexion(driverDB));
         } catch (SQLException ex) {
             Logger.getLogger(DietaPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -823,7 +822,7 @@ public class ControladorDieta {
         dieta.setEstado(jCheckBoxEstado.isSelected());
         DietaData dietaData = null;
         try {
-            dietaData = new DietaData(Conexion.getConexion());
+            dietaData = new DietaData(Conexion.getConexion(driverDB));
         } catch (SQLException ex) {
             Logger.getLogger(DietaPanel.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -1,5 +1,7 @@
 package AccesoADatos;
 
+import Entidades.Comida;
+import Entidades.Dieta;
 import Entidades.DietaComida;
 import Entidades.Horario;
 import java.awt.Font;
@@ -14,16 +16,20 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 public class DietaComidaData {
-   
-   private DietaComida dietaComida;
-   private Connection con=null;
-   private ComidaData cd;
-   private DietaData dd;
-   
-   public DietaComidaData(Connection connection) {
-       con= connection;
-       cd=new ComidaData(connection);
-       dd=new DietaData(connection);
+  
+    private DietaComida dietaComida;
+    private Connection con = null;
+    private ComidaData cd;
+    private DietaData dd;
+    private Dieta dieta;
+    private PacienteData pd;
+    private Comida comida;
+
+    public DietaComidaData(Connection connection) {
+        con = connection;
+        cd = new ComidaData(connection);
+        dd = new DietaData(connection);
+        pd = new PacienteData(connection);
     }
     
     public boolean ingresarDietaComida(DietaComida dietaComida) {
@@ -80,10 +86,24 @@ public class DietaComidaData {
             return false;
         }
     }
+    
+    public List<DietaComida> obtenerDietaComida(){
+        List<DietaComida> inscripciones = new ArrayList<>();
+        String sql = "SELECT idDietaComida, idComida, idDieta, horario FROM nutris.dietacomida";
+        try (PreparedStatement ps = con.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();) {
+            while (rs.next()) {
+                inscripciones.add(extraerDietaComidaDelResulset(rs));
+            }
+        } catch (SQLException ex) {
+            showMessage("Error al conectarse a la base de datos de dietaComidas");
+        }
+        return inscripciones;
+    }
    
     public List<DietaComida> listarComidasPorDieta(int idDieta) {
         ArrayList<DietaComida> listaPorDieta = new ArrayList<>();
-        String sql = "SELECT * FROM nutris.dietacomida WHERE idDieta=?";
+        String sql = "SELECT idDietaComida, idComida, idDieta, horario FROM nutris.dietacomida WHERE idDieta=?";
         try (PreparedStatement ps = con.prepareStatement(sql);) {
             ps.setInt(1, idDieta);
             try (ResultSet rs = ps.executeQuery();) {
@@ -95,6 +115,60 @@ public class DietaComidaData {
             showMessage("Error al conectarse a la base de datos de dietaComidas");
         }
         return listaPorDieta;
+    }
+    
+    public List<Comida> obtenerComidasEnDieta(int idDieta) {
+        List<Comida> comidas = new ArrayList<>();
+        String sql = "SELECT c.idComida, c.nombre, c.detalle, c.calorias, c.estado FROM nutris.dietacomida AS dc, nutris.comida AS c WHERE dc.idComida = c.idComida AND dc.idDieta = ?";
+//        String sql1 = "SELECT c.idComida, c.nombre, c.detalle, c.calorias, c.estado FROM nutris.dietacomida AS dc INNER JOIN nutris.comida AS c ON dc.idComida = c.idComida WHERE dc.idDieta = ?";
+        try (PreparedStatement ps = con.prepareStatement(sql);) {
+            ps.setInt(1, idDieta);
+            try (ResultSet rs = ps.executeQuery();) {
+                while (rs.next()) {
+                    comidas.add(extraerComidaDelResulset(rs));
+                }
+            }
+        } catch (SQLException ex) {
+            showMessage("Error al obtener Inscripciones: " + ex.getMessage());
+        }
+        return comidas;
+    }
+    
+    public List<Comida> obtenerNoComidasEnDieta(int idDieta) {
+        List<Comida> comidas = new ArrayList<>();
+        String sql = "SELECT c.idComida, c.nombre, c.detalle, c.calorias, c.estado FROM nutris.comida AS c WHERE c.idComida NOT IN (SELECT dc.idComida FROM nutris.dietacomida AS dc WHERE dc.idDieta = ?)";
+//        String sql1 = "SELECT c.idComida, c.nombre, c.detalle, c.calorias, c.estado FROM nutris.comida AS c LEFT JOIN nutris.dietacomida AS dc ON c.idComida = dc.idComida AND dc.idDieta = ? WHERE dc.idComida IS NULL";
+        try (PreparedStatement ps = con.prepareStatement(sql);) {
+            ps.setInt(1, idDieta);
+            try (ResultSet rs = ps.executeQuery();) {
+                while (rs.next()) {
+                    comidas.add(extraerComidaDelResulset(rs));
+                }
+            }
+        } catch (SQLException ex) {
+            showMessage("Error al obtener Inscripciones: " + ex.getMessage());
+        }
+        return comidas;
+    }
+    
+    public List<Dieta> obtenerDietasDeComida(int idComida) {//id de materia
+
+        List<Dieta> alumnos = new ArrayList<>();
+        String sql = "SELECT d.idDieta, d.nombre, d.idPaciente, d.fechaInicio, d.pesoInicial, d.pesoActual, d.fechaFinal, d.estado FROM nutris.dietacomida AS dc, nutris.dieta AS d WHERE dc.idDieta = d.idDieta AND dc.idMateria = ?";
+//        String sql1 = "SELECT d.idDieta, d.nombre, d.idPaciente, d.fechaInicio, d.pesoInicial, d.pesoActual, d.fechaFinal, d.estado FROM nutris.dietacomida INNER JOIN nutris. ON inscripcion.idMateria = materia.idMateria INNER JOIN dieta ON inscripcion.idDieta = ?";
+
+        try (PreparedStatement ps = con.prepareStatement(sql);) {
+            ps.setInt(1, idComida);
+            try (ResultSet rs = ps.executeQuery();) {
+                while (rs.next()) {
+                    dietas.add(extraerDietaDelResulset(rs));
+                }
+            }
+
+        } catch (SQLException ex) {
+            showMessage("Error al obtener Inscripciones: " + ex.getMessage());
+        }
+        return alumnos;
     }
     
     private void showMessage(String msg) {
@@ -117,9 +191,29 @@ public class DietaComidaData {
         return dietaComida;
     }
    
+   private Dieta extraerDietaDelResultSet(ResultSet rs) throws SQLException {
+        dieta = new Dieta();
+        dieta.setIdDieta(rs.getInt("idDieta"));
+        dieta.setNombre(rs.getString("nombre"));
+        dieta.setPaciente(pd.buscarPacientePorId(rs.getInt("idPaciente")));
+        dieta.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+        dieta.setFechaFinal(rs.getDate("fechaFinal").toLocalDate());
+        dieta.setPesoInicial(rs.getDouble("pesoInicial"));
+        dieta.setPesoActual(rs.getDouble("pesoActual"));
+        dieta.setEstado(rs.getBoolean("estado"));
+        return dieta;
+    }
    
-   
-   
+   private Comida extraerComidaDelResulset(ResultSet rs) throws SQLException {
+                comida = new Comida();
+                comida.setIdComida(rs.getInt("idComida"));
+                comida.setNombre(rs.getString("nombre"));
+                comida.setDetalle(rs.getString("detalle"));
+                comida.setCalorias(rs.getDouble("calorias"));
+                comida.setEstado(rs.getBoolean("estado"));
+                return comida;
+    
+    }
    
     
 }

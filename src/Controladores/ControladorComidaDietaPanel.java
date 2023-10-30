@@ -189,11 +189,23 @@ public class ControladorComidaDietaPanel {
     }
 
     public void listComidaMouseClicked(MouseEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (evt.getClickCount() == 2) {
+            int selectedIndex = jListComida.getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Comida comidaSeleccionada = (Comida) jListComida.getModel().getElementAt(selectedIndex);
+                System.out.println("Comida seleccionada: " + comidaSeleccionada);
+            }
+        }
     }
 
     public void listDietaMouseClicked(MouseEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (evt.getClickCount() == 2) {
+            int selectedIndex = jListDieta.getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Dieta dietaSeleccionada = (Dieta) jListDieta.getModel().getElementAt(selectedIndex);
+                System.out.println("Dieta seleccionada: " + dietaSeleccionada);
+            }
+        }
     }
     
 }

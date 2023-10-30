@@ -44,7 +44,7 @@ public class Validador {
             LocalDate localDate = fechaSeleccionada.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             
             LocalDate fechaTopeInferior = LocalDate.of(1900, 1, 1);
-            LocalDate fechaTopeSuperior = LocalDate.now().plusDays(1);
+            LocalDate fechaTopeSuperior = LocalDate.now().plusYears(2);
             if (localDate.isAfter(fechaTopeInferior)&&localDate.isBefore(fechaTopeSuperior)) {
                 return true; 
             }

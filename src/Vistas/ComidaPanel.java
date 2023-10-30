@@ -209,6 +209,8 @@ public class ComidaPanel extends java.awt.Panel {
         jLabelEstado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jCheckBoxEstado.setSelected(true);
+        jCheckBoxEstado.setText("Activa");
+        jCheckBoxEstado.setToolTipText("");
 
         jButtonLimpiarForm.setBackground(new java.awt.Color(30, 30, 30));
         jButtonLimpiarForm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Broom48px.png"))); // NOI18N
@@ -283,7 +285,7 @@ public class ComidaPanel extends java.awt.Panel {
                     .addComponent(jLabelDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(10, Short.MAX_VALUE))
         );

@@ -14,6 +14,7 @@ import java.awt.CardLayout;
 public class ComidaPanelMain extends javax.swing.JPanel {
     private ComidaPanelMenu comidaPanelMenu;
     private ComidaPanel comidaPanel;
+    private ComidaDietaPanel comidaDietaPanel;
 //    private ComidaPanelAdv comidaPanelAdv;
     private CardLayout cardLayout;
     /**
@@ -27,9 +28,11 @@ public class ComidaPanelMain extends javax.swing.JPanel {
     private void CrearComidaPaneles(){
         comidaPanelMenu = new ComidaPanelMenu(this);
         comidaPanel = new ComidaPanel(this);
+        comidaDietaPanel = new ComidaDietaPanel(this);
 //        comidaPanelAdv = new ComidaPanelAdv(this);
         add(comidaPanelMenu, "comidaMenu");
         add(comidaPanel, "comidaBas");
+        add(comidaPanel, "comidaDieta");
 //        add(comidaPanelAdv, "comidaAdv");
         cardLayout = (CardLayout) getLayout();
         cardLayout.show(this, "comidaMenu");
@@ -47,8 +50,19 @@ public class ComidaPanelMain extends javax.swing.JPanel {
         setBackground(new java.awt.Color(30, 30, 30));
         setLayout(new java.awt.CardLayout());
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
+    public ComidaPanelMenu getComidaPanelMenu() {
+        return comidaPanelMenu;
+    }
+
+    public ComidaPanel getComidaPanel() {
+        return comidaPanel;
+    }
+
+    public CardLayout getCardLayout() {
+        return cardLayout;
+    }
+
 }

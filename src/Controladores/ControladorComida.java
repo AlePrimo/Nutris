@@ -7,13 +7,14 @@ package Controladores;
 
 import AccesoADatos.ComidaData;
 import Entidades.Comida;
-import Util.AnimacionLBL;
 import Util.ColorRGBError;
 import Util.Efecto;
 import Util.ManejadorAnimacionLBL;
 import Util.SetConnValues;
 import Util.Validador;
 import Vistas.ComidaPanel;
+import Vistas.ComidaPanelMain;
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -31,73 +32,85 @@ import nutris.Conexion;
  * @author Administrador
  */
 public class ControladorComida {
-    private String driverDB = SetConnValues.getTipoDB();
+    private final String driverDB = SetConnValues.getTipoDB();
 
+    private final ComidaPanelMain comidaPanelMain;
     private final ComidaPanel comidaPanel;
     private Comida comida;
     
     private final JTextField jTextFieldCodigoComida;
-    private final JTextArea jTextDetalle;
     private final JTextField jTextFieldNombre;
     private final JTextField jTextFieldCalorias;
+    private final JTextArea jTextDetalle;
     
+    private final JButton jButtonLimpiarForm;
     private final JButton jButtonBuscar;
     private JButton jButtonEliminar;
     private JButton jButtonGuardar;
     private JButton jButtonNuevo;
     private JButton jButtonSalir;
     
-    private final JLabel jLabelCalorias;
+    private final JLabel jLabelVolver;
     private final JLabel jLabelCodigoComida;
-    private final JLabel jLabelDetalle;
     private final JLabel jLabelNombre;
+    private final JLabel jLabelCalorias;
+    private final JLabel jLabelDetalle;
     private final JLabel jLabelEstado;
     
     private final JCheckBox jCheckBoxEstado;
 
-    private AnimacionLBL animacionLBL;
+//    private AnimacionLBL animacionLBL;
     private final ColorRGBError crgbe;
     private final ManejadorAnimacionLBL manejadorAnimacionLBL;
     private final Efecto efecto;
 
     private boolean isFound;
     private boolean isCodComidaModified;
-    private boolean isCaloriasModified;
     private boolean isNombreModified;
+    private boolean isCaloriasModified;
+    private boolean isDetalleModified;
     private boolean isEstadoModified;
-    private boolean isFechaNacModified;
+    
     private boolean bufferState;
     private boolean nuevoMouseEntered;
     private boolean eliminarMouseEntered;
     private boolean guardarMouseEntered;
     private boolean salirMouseEntered;
+    
     private boolean isThreadCodComida;
-    private boolean isThreadCalorias;
     private boolean isThreadNombre;
+    private boolean isThreadCalorias;
+    private boolean isThreadDetalle;
+    
     private boolean isOkCodComida;
-    private boolean isOkCalorias;
     private boolean isOkNombre;
-    private boolean isOk;
+    private boolean isOkCalorias;
+    private boolean isOkDetalle;
+//    private boolean isOk;
+    private int desdePanel;
 
     public ControladorComida(ComidaPanel comidaPanel) {
         this.comidaPanel = comidaPanel;
-        comida = new Comida();
+        comidaPanelMain = comidaPanel.getComidaPanelMain();
+        comida = null;
         
         jTextFieldCodigoComida = comidaPanel.getjTextFieldCodigoComida();
-        jTextDetalle = comidaPanel.getjTextDetalle();
         jTextFieldNombre = comidaPanel.getjTextFieldNombre();
+        jTextDetalle = comidaPanel.getjTextDetalle();
         jTextFieldCalorias = comidaPanel.getjTextFieldCalorias();
         
+        jButtonLimpiarForm = comidaPanel.getjButtonLimpiarForm();
         jButtonBuscar = comidaPanel.getjButtonBuscar();
         jButtonEliminar = comidaPanel.getjButtonEliminar();
         jButtonGuardar = comidaPanel.getjButtonGuardar();
         jButtonNuevo = comidaPanel.getjButtonNuevo();
         jButtonSalir = comidaPanel.getjButtonSalir();
         
-        jLabelCalorias = comidaPanel.getjLabelCalorias();
+        jLabelVolver = comidaPanel.getjLabelVolver();
         jLabelCodigoComida = comidaPanel.getjLabelCodigoComida();
-        jLabelDetalle = comidaPanel.getjLabelDetalle();
         jLabelNombre = comidaPanel.getjLabelNombre();
+        jLabelDetalle = comidaPanel.getjLabelDetalle();
+        jLabelCalorias = comidaPanel.getjLabelCalorias();
         jLabelEstado = comidaPanel.getjLabelEstado();
         
         jCheckBoxEstado = comidaPanel.getjCheckBoxEstado();
@@ -111,17 +124,18 @@ public class ControladorComida {
         salirMouseEntered = false;
 
         isThreadCodComida = false;
-        isThreadCalorias = false;
         isThreadNombre = false;
+        isThreadCalorias = false;
 
         crgbe = new ColorRGBError();
         manejadorAnimacionLBL = new ManejadorAnimacionLBL();
 
         isOkCodComida = false;
-        isOkCalorias = false;
         isOkNombre = false;
-        isOk = isOkCodComida&&isOkCalorias&&isOkNombre&& jCheckBoxEstado.isSelected();;
+        isOkCalorias = false;
+//        isOk = isOkCodComida&&isOkCalorias&&isOkNombre&& jCheckBoxEstado.isSelected();;
         cambiosEnCampos();
+        setEnabledJBttnNuevo();
         limpiarForm();
     }
 
@@ -130,10 +144,13 @@ public class ControladorComida {
         jTextFieldNombre.setText("");
         jTextDetalle.setText("");
         jTextFieldCalorias.setText("");
+        jCheckBoxEstado.setSelected(true);
         jButtonGuardar.setEnabled(false);
         jButtonEliminar.setEnabled(false);
         jButtonNuevo.setEnabled(false);
         jButtonBuscar.setEnabled(false);
+        jButtonLimpiarForm.setEnabled(false);
+        jTextFieldCodigoComida.setEditable(true);
 
     }
 
@@ -143,6 +160,10 @@ public class ControladorComida {
         isCaloriasModified = false;
         isNombreModified = false;
     }
+    
+    private void setEnabledJBttnNuevo() {
+        jButtonNuevo.setEnabled(isOkNombre && isOkDetalle && isOkCalorias && jCheckBoxEstado.isSelected());
+    }
 
     private void cambiosEnCampos() {
         jTextFieldCodigoComida.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
@@ -150,30 +171,24 @@ public class ControladorComida {
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                textoEnCodigoComidaCambiado(e);
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnCodigoComidaCambiado(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnCodigoComidaCambiado(e);
             }
         });
         jTextFieldCalorias.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-
             @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnCaloriasCambiado(e);
-
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnCaloriasCambiado(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnCaloriasCambiado(e);
@@ -184,14 +199,11 @@ public class ControladorComida {
             @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnNombreCambiado(e);
-
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnNombreCambiado(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnNombreCambiado(e);
@@ -202,19 +214,20 @@ public class ControladorComida {
             @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnCaloriasCambiado(e);
-
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnCaloriasCambiado(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnCaloriasCambiado(e);
             }
         });
+    }
+    
+    public void buttonLimpiarFormActionPerformed(ActionEvent evt) {
+        limpiarForm();
     }
 
     public void salirComidaActionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,36 +245,21 @@ public class ControladorComida {
         comida = comidaData.buscarComida(Integer.parseInt(jTextFieldCodigoComida.getText()));
 
         if (comida != null) {
-            jTextFieldNombre.setText(comida.getNombre());
-            jTextDetalle.setText(comida.getDetalle());
-            jTextFieldCalorias.setText(""+comida.getCalorias());
-            jCheckBoxEstado.setSelected(comida.isEstado());
-            jButtonEliminar.setEnabled(comida.isEstado());
-            jButtonNuevo.setEnabled(false);
-            isFound = true;
-            bufferState = comida.isEstado();
+            setComidaForm(comida);
+            jTextFieldCodigoComida.setEditable(false);
         } else {
             isFound = false;
         }
     }
 
     public void nuevoComidaActionPerformed(java.awt.event.ActionEvent evt) {
-        comida.setIdComida(Integer.parseInt(jTextFieldCodigoComida.getText()));
-        comida.setNombre(jTextFieldNombre.getText());
-        comida.setDetalle(jTextDetalle.getText());
-        comida.setCalorias(Double.parseDouble(jTextFieldCalorias.getText()));
-        comida.setEstado(jCheckBoxEstado.isSelected());
-        ComidaData comidaData = null;
-        try {
-            comidaData = new ComidaData(Conexion.getConexion(driverDB));
-        } catch (SQLException ex) {
-            Logger.getLogger(ComidaPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (comidaData.guardarComida(comida)) {
-            limpiarForm();
-        }
+        nuevoOGuardar();
     }
 
+    public void guardarComidaActionPerformed(java.awt.event.ActionEvent evt) {
+        nuevoOGuardar();
+    }
+    
     public void eliminarComidaActionPerformed(java.awt.event.ActionEvent evt) {
         ComidaData comidaData = null;
         try {
@@ -274,31 +272,12 @@ public class ControladorComida {
         }
     }
 
-    public void guardarComidaActionPerformed(java.awt.event.ActionEvent evt) {
-        comida.setIdComida(Integer.parseInt(jTextFieldCodigoComida.getText()));
-        comida.setDetalle(jTextDetalle.getText());
-        comida.setNombre(jTextFieldNombre.getText());
-        comida.setCalorias(Double.parseDouble(jTextFieldCalorias.getText()));
-        comida.setEstado(jCheckBoxEstado.isSelected());
-        ComidaData comidaData = null;
-        try {
-            comidaData = new ComidaData(Conexion.getConexion(driverDB));
-        } catch (SQLException ex) {
-            Logger.getLogger(ComidaPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (comidaData.modificarComida(comida)) {
-            limpiarForm();
-        }
-    }
-
     public void buttonBuscarMouseEntered(java.awt.event.MouseEvent evt) {
         efecto.animacionBuscar(jButtonBuscar, 50);
-
     }
 
     public void buttonBuscarMouseExited(java.awt.event.MouseEvent evt) {
         efecto.animacionBuscar(jButtonBuscar, 40);
-
     }
 
     public void buttonBuscarMousePressed(java.awt.event.MouseEvent evt) {
@@ -326,12 +305,11 @@ public class ControladorComida {
     }
 
     public void checkBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {
+        jCheckBoxEstado.setText(jCheckBoxEstado.isSelected()?"Activa":"Inactiva");
         if (isFound) {
             if (bufferState != jCheckBoxEstado.isSelected()) {
                 isEstadoModified = true; //(comida.getDni()!=0&&prevState!=jCheckBoxEstado.isSelected())?true:false;
-                System.out.println("isEstadoModified=" + isEstadoModified);
             } else {
-                System.out.println("HOLA");
                 isEstadoModified = false;
             }
             estadoBttnGuardar();
@@ -412,12 +390,17 @@ public class ControladorComida {
     }
 
     public void textoEnCodigoComidaCambiado(javax.swing.event.DocumentEvent e) {
-//        int dni;
         if (!jTextFieldCodigoComida.getText().equals("")) {
-            if (Validador.validarNumeroEntero(jTextFieldCodigoComida.getText())) {
-                isCodComidaModified = (""+comida.getIdComida()).equals(jTextFieldCodigoComida.getText()); //!= dni;
-                isOkCodComida = true;
-                estadoBttnGuardar();
+            jButtonLimpiarForm.setEnabled(true);
+            if (Validador.validarNumeroEntero(jTextFieldCodigoComida.getText())&&jTextFieldCodigoComida.getText().length()<11) {
+                if (comida == null) {
+                    isCodComidaModified = true;
+                    isOkCodComida = true;
+                } else {
+                    isCodComidaModified = ("" + comida.getIdComida()).equals(jTextFieldCodigoComida.getText()); //!= dni;
+                    isOkCodComida = true;
+//                estadoBttnGuardar();
+                }
                 if (isThreadCodComida) {
                     manejadorAnimacionLBL.detenerAnimacion(jLabelCodigoComida);
                     isThreadCodComida = !isThreadCodComida;
@@ -426,65 +409,67 @@ public class ControladorComida {
                 isOkCodComida = false;
                 if (!isThreadCodComida) {
                     manejadorAnimacionLBL.crearAnimacion("lblcodcomida", jLabelCodigoComida, 3, crgbe);
-                    manejadorAnimacionLBL.crearAnimacion("txtfielcodcomida", jTextFieldCodigoComida, 3, crgbe);
-                    
                     isThreadCodComida = !isThreadCodComida;
                 }
             }
         } else {
             isOkCodComida = false;
             if (isThreadCodComida) {
-                    manejadorAnimacionLBL.detenerAnimacion(jLabelCodigoComida);
-                    isThreadCodComida = !isThreadCodComida;
-                }
+                manejadorAnimacionLBL.detenerAnimacion(jLabelCodigoComida);
+                isThreadCodComida = !isThreadCodComida;
+            }
         }
-        isOk = isOkCodComida && isOkCalorias && isOkNombre && jCheckBoxEstado.isSelected();
-        jButtonNuevo.setEnabled(isOk);
+        setEnabledJBttnNuevo();
+        setEditableTextFieldCodComida();
         jButtonBuscar.setEnabled(isOkCodComida);
     }
 
     public void textoEnCaloriasCambiado(javax.swing.event.DocumentEvent e) {
-        if (!jTextFieldCalorias.getText().equals("")){
-        if (Validador.validarNumeroDecimal(jTextFieldCalorias.getText())) {
-            isOkCalorias = true;
-
-            String fieldCalorias = jTextFieldCalorias.getText().replace(',', '.');
-            isCaloriasModified = (!("" + comida.getCalorias()).equals(fieldCalorias));
-            estadoBttnGuardar();
-
-            if (jTextFieldCalorias.getText().equals("")) {
+        if (!jTextFieldCalorias.getText().isEmpty()) {
+            jButtonLimpiarForm.setEnabled(true);
+            if (Validador.validarNumeroDecimal(jTextFieldCalorias.getText()) && jTextFieldCalorias.getText().length() < 11) {
+                if (comida == null) {
+                    isCaloriasModified = true;
+                    isOkCalorias = true;
+                } else {
+                    String fieldCalorias = jTextFieldCalorias.getText().replace(',', '.');
+                    isCaloriasModified = (!("" + comida.getCalorias()).equals(fieldCalorias));
+                    isOkCalorias = true;
+                    estadoBttnGuardar();
+                }
+//            if (jTextFieldCalorias.getText().equals("")) {
+//                isOkCalorias = false;
+//            }
+                if (isThreadCalorias) {
+                    manejadorAnimacionLBL.detenerAnimacion(jLabelCalorias);
+                    isThreadCalorias = !isThreadCalorias;
+                }
+            } else {
                 isOkCalorias = false;
+                if (!isThreadCalorias) {
+                    manejadorAnimacionLBL.crearAnimacion("calorias", jLabelCalorias, 3, crgbe);
+                    isThreadCalorias = !isThreadCalorias;
+                }
             }
+        } else {
+            isOkCalorias = false;
             if (isThreadCalorias) {
                 manejadorAnimacionLBL.detenerAnimacion(jLabelCalorias);
                 isThreadCalorias = !isThreadCalorias;
             }
-        } else {
-            isOkCalorias = false;
-            if (!isThreadCalorias) {
-                manejadorAnimacionLBL.crearAnimacion("calorias", jLabelCalorias, 3, crgbe);
-                isThreadCalorias = !isThreadCalorias;
-            }
         }
-        }else{
-            isOkCalorias = false;
-            if(isThreadCalorias){
-                manejadorAnimacionLBL.detenerAnimacion(jLabelCalorias);
-                isThreadCalorias = !isThreadCalorias;
-            }
-        }
-        isOk = isOkCodComida && isOkCalorias && isOkNombre && jCheckBoxEstado.isSelected();
-        jButtonNuevo.setEnabled(isOk);
+        setEnabledJBttnNuevo();
+        setEditableTextFieldCodComida();
     }
 
     public void textoEnNombreCambiado(javax.swing.event.DocumentEvent e) {
-        if (Validador.validarTextoYEspacio(jTextFieldNombre.getText())) {
+        if (Validador.validarTextoYEspacio(jTextFieldNombre.getText())&&jTextFieldNombre.getText().length()<100) {
             isOkNombre = true;
             if (comida.getNombre() != null) {
-                isNombreModified = (!comida.getNombre().equals(jTextFieldNombre.getText()));
+                isNombreModified = !comida.getNombre().equals(jTextFieldNombre.getText());
                 estadoBttnGuardar();
             }
-            if (jTextFieldNombre.getText().equals("")) {
+            if (jTextFieldNombre.getText().isEmpty()) {
                 isOkNombre = false;
             }
             if (isThreadNombre) {
@@ -493,26 +478,89 @@ public class ControladorComida {
             }
         } else {
             isOkNombre = false;
-//            System.out.println("isThreadNombre: "+ isThreadNombre);
             if (!isThreadNombre) {
                 manejadorAnimacionLBL.crearAnimacion("nombre", jLabelNombre, 3, crgbe);
                 isThreadNombre = !isThreadNombre;
             }
         }
-        isOk = isOkCodComida && isOkCalorias && isOkNombre && jCheckBoxEstado.isSelected();
-        jButtonNuevo.setEnabled(isOk);
+        setEnabledJBttnNuevo();
+        setEditableTextFieldCodComida();
+    }
+    
+    public void textoEnDetalleCambiado(javax.swing.event.DocumentEvent e) {
+        if (jTextDetalle.getText().length()<501) {
+            isOkDetalle = true;
+            if (comida.getNombre() != null) {
+                isDetalleModified = !comida.getNombre().equals(jTextFieldNombre.getText());
+                estadoBttnGuardar();
+            }
+            if (jTextFieldNombre.getText().isEmpty()) {
+                isOkDetalle = false;
+            }
+            if (isThreadDetalle) {
+                manejadorAnimacionLBL.detenerAnimacion(jLabelNombre);
+                isThreadDetalle = !isThreadDetalle;
+            }
+        } else {
+            isOkDetalle = false;
+            if (!isThreadDetalle) {
+                manejadorAnimacionLBL.crearAnimacion("nombre", jLabelNombre, 3, crgbe);
+                isThreadDetalle = !isThreadDetalle;
+            }
+        }
+        setEnabledJBttnNuevo();
+        setEditableTextFieldCodComida();
     }
 
     public void labelVolverMouseClicked(MouseEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CardLayout cardLayout = comidaPanelMain.getCardLayout();
+        desdePanel = comidaPanel.getDesdePanel();
+        switch (desdePanel) {
+            case 0:
+                cardLayout.show(comidaPanelMain, "comidaMenu");
+                break;
+            case 1:
+                cardLayout.show(comidaPanelMain, "comidaDietaAdv");
+        }
     }
 
     public void ButtonLimpiarFormActionPerformed(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        limpiarForm();
     }
 
-    public void setComidaForm(Comida c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setComidaForm(Comida comida) {
+        this.comida = comida;
+        if(jTextFieldCodigoComida.getText().isEmpty()) jTextFieldCodigoComida.setText(comida.getIdComida()+"");
+        jTextFieldNombre.setText(comida.getNombre());
+        jTextDetalle.setText(comida.getDetalle());
+        jTextFieldCalorias.setText("" + comida.getCalorias());
+        jCheckBoxEstado.setSelected(comida.isEstado());
+        jButtonEliminar.setEnabled(comida.isEstado());
+        jButtonNuevo.setEnabled(false);
+        isFound = true;
+        bufferState = comida.isEstado();
+    }
+
+    private void nuevoOGuardar() {
+//        comida.setIdComida(Integer.parseInt(jTextFieldCodigoComida.getText()));
+        if (jButtonNuevo.isEnabled() && !jButtonGuardar.isEnabled()) comida = new Comida();
+        comida.setNombre(jTextFieldNombre.getText());
+        comida.setDetalle(jTextDetalle.getText());
+        String fieldCalorias = jTextFieldCalorias.getText().replace(',', '.');
+        comida.setCalorias(Double.parseDouble(fieldCalorias));
+        comida.setEstado(jCheckBoxEstado.isSelected());
+        ComidaData comidaData = null;
+        try {
+            comidaData = new ComidaData(Conexion.getConexion(driverDB));
+        } catch (SQLException ex) {
+            Logger.getLogger(ComidaPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (jButtonNuevo.isEnabled() && !jButtonGuardar.isEnabled()) if (comidaData.guardarComida(comida)) limpiarForm();
+        if (!jButtonNuevo.isEnabled() && jButtonGuardar.isEnabled()) if (comidaData.modificarComida(comida)) limpiarForm();
+    }
+
+    private void setEditableTextFieldCodComida() {
+        if(!(isOkCodComida||isOkNombre||isOkCalorias||isOkDetalle)) jTextFieldCodigoComida.setEditable(true);
     }
 
 }

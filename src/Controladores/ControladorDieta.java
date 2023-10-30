@@ -66,7 +66,7 @@ public class ControladorDieta {
 
     private final JButton jButtonLimpiarForm;
     private final JButton jButtonBuscar;
-    private JButton jButtonEliminar;
+//    private JButton jButtonEliminar;
     private JButton jButtonGuardar;
     private JButton jButtonNuevo;
     private JButton jButtonSalir;
@@ -139,7 +139,7 @@ public class ControladorDieta {
 
         jButtonLimpiarForm = dietaPanel.getjButtonLimpiarForm();
         jButtonBuscar = dietaPanel.getjButtonBuscar();
-        jButtonEliminar = dietaPanel.getjButtonEliminar();
+//        jButtonEliminar = dietaPanel.getjButtonEliminar();
         jButtonGuardar = dietaPanel.getjButtonGuardar();
         jButtonNuevo = dietaPanel.getjButtonNuevo();
         jButtonSalir = dietaPanel.getjButtonSalir();
@@ -224,7 +224,7 @@ public class ControladorDieta {
         dateTextFieldInicial.setText("");
         jLabelRPesoRequeridoData.setText("");
         jButtonGuardar.setEnabled(false);
-        jButtonEliminar.setEnabled(false);
+//        jButtonEliminar.setEnabled(false);
         jButtonNuevo.setEnabled(false);
         jButtonBuscar.setEnabled(false);
         jButtonLimpiarForm.setEnabled(false);
@@ -232,16 +232,16 @@ public class ControladorDieta {
     }
 
     private void estadoBttnGuardar() {
-        System.out.println("----------------------");
-        System.out.println("found "+isFound);
-        System.out.println("nombre "+isNombreModified);
-        System.out.println("fechaIn "+isFechaInicioModified);
-        System.out.println("fechaFi "+isFechaFinalModified);
-        System.out.println("pesoIn "+isPesoInicialModified);
-        System.out.println("pesoAc "+isPesoFinalModified);
-        System.out.println("estado "+isEstadoModified);
-        System.out.println("final "+(isFound && (isNombreModified || isEstadoModified || isFechaInicioModified || isFechaFinalModified || isPesoInicialModified || isPesoFinalModified)));
-        System.out.println("----------------------");
+//        System.out.println("----------------------");
+//        System.out.println("found "+isFound);
+//        System.out.println("nombre "+isNombreModified);
+//        System.out.println("fechaIn "+isFechaInicioModified);
+//        System.out.println("fechaFi "+isFechaFinalModified);
+//        System.out.println("pesoIn "+isPesoInicialModified);
+//        System.out.println("pesoAc "+isPesoFinalModified);
+//        System.out.println("estado "+isEstadoModified);
+//        System.out.println("final "+(isFound && (isNombreModified || isEstadoModified || isFechaInicioModified || isFechaFinalModified || isPesoInicialModified || isPesoFinalModified)));
+//        System.out.println("----------------------");
         jButtonGuardar.setEnabled(isFound && (isNombreModified || isEstadoModified || isFechaInicioModified || isFechaFinalModified || isPesoInicialModified || isPesoFinalModified));
 //        isFechaInicioModified = false;
 //        isFechaFinalModified = false;
@@ -253,12 +253,10 @@ public class ControladorDieta {
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnCodDietaCambiado(e);
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnCodDietaCambiado(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnCodDietaCambiado(e);
@@ -269,14 +267,11 @@ public class ControladorDieta {
             @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnDietaNombreCambiado(e);
-
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnDietaNombreCambiado(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnDietaNombreCambiado(e);
@@ -287,14 +282,11 @@ public class ControladorDieta {
             @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 cambioDeFechaInicio(e);
-
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 cambioDeFechaInicio(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 cambioDeFechaInicio(e);
@@ -305,14 +297,11 @@ public class ControladorDieta {
             @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 cambioDeFechaFinal(e);
-
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 cambioDeFechaFinal(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 cambioDeFechaFinal(e);
@@ -324,12 +313,10 @@ public class ControladorDieta {
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnPesoInicialCambiado(e);
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnPesoInicialCambiado(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnPesoInicialCambiado(e);
@@ -341,12 +328,10 @@ public class ControladorDieta {
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnPesoFinalCambiado(e);
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnPesoFinalCambiado(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnPesoFinalCambiado(e);
@@ -370,10 +355,8 @@ public class ControladorDieta {
         dieta = dietaData.buscarDietaPorId(Integer.parseInt(jTextFieldCodDieta.getText()));
 
         if (dieta != null) {
-            isFound = true;
             setDietaForm(dieta);
             jTextFieldCodDieta.setEditable(false);
-            System.out.println("ver found "+isFound);
         } else {
             isFound = false;
         }
@@ -438,9 +421,7 @@ public class ControladorDieta {
         if (isFound) {
             if (bufferState != jCheckBoxEstado.isSelected()) {
                 isEstadoModified = true; //(dieta.getDni()!=0&&prevState!=jCheckBoxEstado.isSelected())?true:false;
-                System.out.println("isEstadoModified=" + isEstadoModified);
             } else {
-                System.out.println("HOLA");
                 isEstadoModified = false;
             }
             estadoBttnGuardar();
@@ -457,15 +438,15 @@ public class ControladorDieta {
         jButtonNuevo = efecto.efectoBttn(jButtonNuevo, jButtonNuevo.isFocusOwner(), -1, 3);
     }
 
-    public void buttonEliminarMouseEntered(java.awt.event.MouseEvent evt) {
-        eliminarMouseEntered = true;
-        jButtonEliminar = efecto.efectoBttn(jButtonEliminar, jButtonEliminar.isFocusOwner(), 1, 1);
-    }
+//    public void buttonEliminarMouseEntered(java.awt.event.MouseEvent evt) {
+//        eliminarMouseEntered = true;
+//        jButtonEliminar = efecto.efectoBttn(jButtonEliminar, jButtonEliminar.isFocusOwner(), 1, 1);
+//    }
 
-    public void buttonEliminarMouseExited(java.awt.event.MouseEvent evt) {
-        eliminarMouseEntered = false;
-        jButtonEliminar = efecto.efectoBttn(jButtonEliminar, jButtonEliminar.isFocusOwner(), -1, 3);
-    }
+//    public void buttonEliminarMouseExited(java.awt.event.MouseEvent evt) {
+//        eliminarMouseEntered = false;
+//        jButtonEliminar = efecto.efectoBttn(jButtonEliminar, jButtonEliminar.isFocusOwner(), -1, 3);
+//    }
 
     public void buttonGuardarMouseEntered(java.awt.event.MouseEvent evt) {
         guardarMouseEntered = true;
@@ -495,13 +476,13 @@ public class ControladorDieta {
         jButtonNuevo = efecto.efectoBttn(jButtonNuevo, nuevoMouseEntered, -1, 3);
     }
 
-    public void buttonEliminarFocusGained(java.awt.event.FocusEvent evt) {
-        jButtonEliminar = efecto.efectoBttn(jButtonEliminar, eliminarMouseEntered, 1, 1);
-    }
+//    public void buttonEliminarFocusGained(java.awt.event.FocusEvent evt) {
+//        jButtonEliminar = efecto.efectoBttn(jButtonEliminar, eliminarMouseEntered, 1, 1);
+//    }
 
-    public void buttonEliminarFocusLost(java.awt.event.FocusEvent evt) {
-        jButtonEliminar = efecto.efectoBttn(jButtonEliminar, eliminarMouseEntered, -1, 3);
-    }
+//    public void buttonEliminarFocusLost(java.awt.event.FocusEvent evt) {
+//        jButtonEliminar = efecto.efectoBttn(jButtonEliminar, eliminarMouseEntered, -1, 3);
+//    }
 
     public void buttonGuardarFocusGained(java.awt.event.FocusEvent evt) {
         jButtonGuardar = efecto.efectoBttn(jButtonGuardar, guardarMouseEntered, 1, 1);
@@ -540,8 +521,6 @@ public class ControladorDieta {
                 isOkCodDieta = false;
                 if (!isThreadCodDieta) {
                     manejadorAnimacionLBL.crearAnimacion("lblCodDieta", jLabelCodDieta, 3, crgbe);
-                    manejadorAnimacionLBL.crearAnimacion("txtfieldCodDieta", jTextFieldCodDieta, 3, crgbe);
-
                     isThreadCodDieta = !isThreadCodDieta;
                 }
             }
@@ -558,7 +537,7 @@ public class ControladorDieta {
     }
 
     public void textoEnDietaNombreCambiado(javax.swing.event.DocumentEvent e) {
-        if (Validador.validarTextoYEspacio(jTextFieldDietaNombre.getText())) {
+        if (Validador.validarTextoYEspacio(jTextFieldDietaNombre.getText())&&jTextFieldDietaNombre.getText().length()<100) {
             isOkDietaNombre = true;
             if (dieta != null) {
                 isNombreModified = !dieta.getNombre().equalsIgnoreCase(jTextFieldDietaNombre.getText());
@@ -667,7 +646,6 @@ public class ControladorDieta {
                 if (dieta == null) {
                     isPesoInicialModified = true;
                     isOkPesoInicial = true;
-                    System.out.println("MOMENTO PESOIN: "+isPesoInicialModified);
                 } else {
                     String fieldPesoInicial = jTextFieldPesoInicial.getText().replace(',','.');
                     isPesoInicialModified = !("" + dieta.getPesoInicial()).equals(fieldPesoInicial);
@@ -705,12 +683,10 @@ public class ControladorDieta {
             if (Validador.validarNumeroDecimal(jTextFieldPesoActual.getText()) && jTextFieldPesoActual.getText().length() < 7) {
                 if (dieta == null) {
                     isPesoFinalModified = true;
-                    System.out.println("MOMENTO PESOFI: "+isPesoFinalModified);
                     isOkPesoFinal = true;
                 } else {
                     String fieldPesoFinal = jTextFieldPesoActual.getText().replace(',','.');
                     isPesoFinalModified = !("" + dieta.getPesoActual()).equals(fieldPesoFinal);
-                    System.out.println("VALOR PESOfI: "+isPesoFinalModified);
                     isOkPesoFinal = true;
                     estadoBttnGuardar();
                 }
@@ -773,9 +749,9 @@ public class ControladorDieta {
         infoRangoPesoRequerido = IMC.calcIMC(dieta.getPaciente().getAltura());
         jLabelRPesoRequeridoData.setText((String) infoRangoPesoRequerido.get("rangoIMC"));
         jCheckBoxEstado.setSelected(dieta.isEstado());
-        jButtonEliminar.setEnabled(dieta.isEstado());
+//        jButtonEliminar.setEnabled(dieta.isEstado());
         jButtonNuevo.setEnabled(false);
-//        isFound = true;
+        isFound = true;
         bufferState = dieta.isEstado();
     }
 
@@ -827,26 +803,12 @@ public class ControladorDieta {
         } catch (SQLException ex) {
             Logger.getLogger(DietaPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (jButtonNuevo.isEnabled() && !jButtonGuardar.isEnabled()) {
-            if (dietaData.ingresarDieta(dieta)) {
-                limpiarForm();
-            }
-        }
-        if (!jButtonNuevo.isEnabled() && jButtonGuardar.isEnabled()) {
-            if (dietaData.modificarDieta(dieta)) {
-                limpiarForm();
-            }
-        }
+        if (jButtonNuevo.isEnabled() && !jButtonGuardar.isEnabled()) if (dietaData.ingresarDieta(dieta)) limpiarForm();
+        if (!jButtonNuevo.isEnabled() && jButtonGuardar.isEnabled()) if (dietaData.modificarDieta(dieta)) limpiarForm();
     }
 
     private void setEditableTextFieldCodDieta() {
-        boolean setTo;
-        setTo = isOkCodDieta || isOkDietaNombre || isOkFechaInicio || isOkFechaFinal || isOkPesoInicial || isOkPesoFinal;
-
-        if (!setTo) {
-            jTextFieldCodDieta.setEditable(true);
-        }
-
+        if (!(isOkCodDieta || isOkDietaNombre || isOkFechaInicio || isOkFechaFinal || isOkPesoInicial || isOkPesoFinal)) jTextFieldCodDieta.setEditable(true);
     }
 
 }

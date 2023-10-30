@@ -85,7 +85,6 @@ public class DietaPanel extends java.awt.Panel {
         jLabelVolver = new javax.swing.JLabel();
         jPanelPacienteBotones = new javax.swing.JPanel();
         jButtonNuevo = new javax.swing.JButton();
-        jButtonEliminar = new javax.swing.JButton();
         jButtonGuardar = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
 
@@ -437,7 +436,7 @@ public class DietaPanel extends java.awt.Panel {
         jPanelPaciente.add(jPanelPacienteTitulo, java.awt.BorderLayout.NORTH);
 
         jButtonNuevo.setFont(new java.awt.Font("JetBrains Mono NL Thin", 0, 14)); // NOI18N
-        jButtonNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Greek Salad48px.png"))); // NOI18N
+        jButtonNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Add properties48px.png"))); // NOI18N
         jButtonNuevo.setText("Nuevo");
         jButtonNuevo.setToolTipText("Nueva Dieta");
         jButtonNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
@@ -463,36 +462,6 @@ public class DietaPanel extends java.awt.Panel {
         jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNuevoActionPerformed(evt);
-            }
-        });
-
-        jButtonEliminar.setFont(new java.awt.Font("JetBrains Mono NL Thin", 0, 14)); // NOI18N
-        jButtonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Remove.png"))); // NOI18N
-        jButtonEliminar.setText("Eliminar");
-        jButtonEliminar.setToolTipText("Eliminar Dieta del Paciente");
-        jButtonEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        jButtonEliminar.setMaximumSize(new java.awt.Dimension(200, 40));
-        jButtonEliminar.setMinimumSize(new java.awt.Dimension(102, 30));
-        jButtonEliminar.setPreferredSize(new java.awt.Dimension(150, 35));
-        jButtonEliminar.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jButtonEliminarFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jButtonEliminarFocusLost(evt);
-            }
-        });
-        jButtonEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonEliminarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonEliminarMouseExited(evt);
-            }
-        });
-        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEliminarActionPerformed(evt);
             }
         });
 
@@ -563,11 +532,9 @@ public class DietaPanel extends java.awt.Panel {
             .addGroup(jPanelPacienteBotonesLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
                 .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
                 .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
@@ -576,10 +543,10 @@ public class DietaPanel extends java.awt.Panel {
             .addGroup(jPanelPacienteBotonesLayout.createSequentialGroup()
                 .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(jPanelPacienteBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelPacienteBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -619,26 +586,6 @@ public class DietaPanel extends java.awt.Panel {
     private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
         controladorDieta.nuevoDietaActionPerformed(evt);
     }//GEN-LAST:event_jButtonNuevoActionPerformed
-
-    private void jButtonEliminarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonEliminarFocusGained
-       controladorDieta.buttonEliminarFocusGained(evt);
-    }//GEN-LAST:event_jButtonEliminarFocusGained
-
-    private void jButtonEliminarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonEliminarFocusLost
-        controladorDieta.buttonEliminarFocusLost(evt);
-    }//GEN-LAST:event_jButtonEliminarFocusLost
-
-    private void jButtonEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEliminarMouseEntered
-        controladorDieta.buttonEliminarMouseEntered(evt);
-    }//GEN-LAST:event_jButtonEliminarMouseEntered
-
-    private void jButtonEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEliminarMouseExited
-        controladorDieta.buttonEliminarMouseExited(evt);
-    }//GEN-LAST:event_jButtonEliminarMouseExited
-
-    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
-        controladorDieta.eliminarDietaActionPerformed(evt);
-    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonGuardarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonGuardarFocusGained
         controladorDieta.buttonGuardarFocusGained(evt);
@@ -735,7 +682,6 @@ public class DietaPanel extends java.awt.Panel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
-    private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonLimpiarForm;
     private javax.swing.JButton jButtonNuevo;
@@ -785,9 +731,9 @@ public class DietaPanel extends java.awt.Panel {
         return jButtonBuscar;
     }
 
-    public JButton getjButtonEliminar() {
-        return jButtonEliminar;
-    }
+//    public JButton getjButtonEliminar() {
+//        return jButtonEliminar;
+//    }
 
     public JButton getjButtonGuardar() {
         return jButtonGuardar;

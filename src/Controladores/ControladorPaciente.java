@@ -118,8 +118,8 @@ public class ControladorPaciente {
     private int desdePanel;
 
     public ControladorPaciente(PacientePanel pacientePanel) {
-        pacientePanelMain = pacientePanel.getPacientePanelMain();
         this.pacientePanel = pacientePanel;
+        pacientePanelMain = pacientePanel.getPacientePanelMain();
         paciente = null;
 
         jTextFieldDni = pacientePanel.getjTextFieldDni();
@@ -245,28 +245,25 @@ public class ControladorPaciente {
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnDniCambiado(e);
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnDniCambiado(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnDniCambiado(e);
             }
         });
+        
         jTextFieldApellido.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
             @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnApellidoCambiado(e);
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnApellidoCambiado(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnApellidoCambiado(e);
@@ -278,12 +275,10 @@ public class ControladorPaciente {
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnNombreCambiado(e);
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnNombreCambiado(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnNombreCambiado(e);
@@ -295,12 +290,10 @@ public class ControladorPaciente {
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnDomicilioCambiado(e);
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnDomicilioCambiado(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnDomicilioCambiado(e);
@@ -311,14 +304,11 @@ public class ControladorPaciente {
             @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnTelCambiado(e);
-
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnTelCambiado(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnTelCambiado(e);
@@ -329,14 +319,11 @@ public class ControladorPaciente {
             @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnCelCambiado(e);
-
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnCelCambiado(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnCelCambiado(e);
@@ -347,14 +334,11 @@ public class ControladorPaciente {
             @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnMailCambiado(e);
-
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnMailCambiado(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnMailCambiado(e);
@@ -365,14 +349,11 @@ public class ControladorPaciente {
             @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnAlturaCambiado(e);
-
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnAlturaCambiado(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 textoEnAlturaCambiado(e);
@@ -383,14 +364,11 @@ public class ControladorPaciente {
             @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 cambioDeFecha(e);
-
             }
-
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 cambioDeFecha(e);
             }
-
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 cambioDeFecha(e);
@@ -411,23 +389,8 @@ public class ControladorPaciente {
 //            Logger.getLogger(PacientePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         paciente = pacienteData.buscarPacientePorDni(jTextFieldDni.getText());
-
         if (paciente != null) {
-//            jTextFieldApellido.setText(paciente.getApellido());
-//            jTextFieldNombre.setText(paciente.getNombre());
-//            jTextFieldDomicilio.setText(paciente.getDomicilio());
-//            jTextFieldTelefono.setText(paciente.getTelefonoFijo());
-//            jTextFieldCelular.setText(paciente.getCelular());
-//            jTextFieldEmail.setText(paciente.getMail());
-//            jTextFieldAltura.setText(""+paciente.getAltura());
-//            Date date = java.sql.Date.valueOf(paciente.getFechaNac());
-//            jDateChooserFNac.setDate(date);
-//            jCheckBoxEstado.setSelected(paciente.isEstado());
             setPacienteForm(paciente);
-//            jButtonEliminar.setEnabled(paciente.isEstado());
-//            jButtonNuevo.setEnabled(false);
-//            isFound = true;
-//            bufferState = paciente.isEstado();
         } else {
             isFound = false;
         }

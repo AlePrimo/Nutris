@@ -5,20 +5,11 @@
  */
 package Vistas;
 
-import AccesoADatos.DietaData;
-import AccesoADatos.PacienteData;
 import Controladores.ControladorPacientesAdv;
-import Entidades.Dieta;
-import Entidades.Paciente;
 import Vistas.Render.RenderTable;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -29,7 +20,6 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import nutris.Conexion;
 
 /**
  *
@@ -37,8 +27,8 @@ import nutris.Conexion;
  */
 public class PacientePanelAdv extends java.awt.Panel {
 
-    private PacientePanelMain pacientePanelMain;
-    private ControladorPacientesAdv controladorPacientesAdv;
+    private final PacientePanelMain pacientePanelMain;
+    private final ControladorPacientesAdv controladorPacientesAdv;
     private DefaultTableModel tableModel = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
@@ -47,6 +37,7 @@ public class PacientePanelAdv extends java.awt.Panel {
 
     /**
      * Creates new form PacientePanelAdv
+     * @param pacientePanelMain
      */
     public PacientePanelAdv(PacientePanelMain pacientePanelMain) {
         initComponents();

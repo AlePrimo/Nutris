@@ -28,7 +28,7 @@ import nutris.Conexion;
  * @author Administrador
  */
 public class ControladorComida {
-    private String driverDB = "mariadb";
+    private String driverDB = "mysql";
 
     private final ComidaPanel comidaPanel;
     private Comida comida;

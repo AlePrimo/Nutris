@@ -57,7 +57,7 @@ import nutris.Conexion;
  */
 public class ControladorDietaDietasAdv {
     
-    private String driverDB = "mariadb";
+    private String driverDB = "mysql";
 
     private final DietaPanelMain dietaPanelMain;
     private final DietaPacientePanelAdv dietaPacientePanelAdv;

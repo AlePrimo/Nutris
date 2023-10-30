@@ -1,3 +1,4 @@
 src/config/database.properties -text
 
 *.txt text
+*.form text

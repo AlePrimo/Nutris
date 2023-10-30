@@ -244,19 +244,19 @@ public class WinAppNutris extends javax.swing.JFrame {
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
 //            java.util.logging.Logger.getLogger(WinAppNutris.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
-        FlatLaf.setPreferredMonospacedFontFamily(FlatJetBrainsMonoFont.FAMILY);
-        FlatMacDarkLaf.setup();
-        UIManager.put("Button.arc", 999);
-        UIManager.put("Component.arc", 999);
-        UIManager.put("TextComponent.arc", 999);
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new WinAppNutris().setVisible(true);
-            }
-        });
+//        FlatLaf.setPreferredMonospacedFontFamily(FlatJetBrainsMonoFont.FAMILY);
+//        FlatMacDarkLaf.setup();
+//        UIManager.put("Button.arc", 999);
+//        UIManager.put("Component.arc", 999);
+//        UIManager.put("TextComponent.arc", 999);
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new WinAppNutris().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

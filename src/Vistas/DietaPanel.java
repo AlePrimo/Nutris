@@ -8,6 +8,7 @@ package Vistas;
 import Controladores.ControladorDieta;
 import Entidades.Paciente;
 import com.toedter.calendar.JDateChooser;
+import java.awt.Cursor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -32,6 +33,12 @@ public class DietaPanel extends java.awt.Panel {
         this.dietaPanelMain = dietaPanelMain;
         boxModel = new DefaultComboBoxModel();
         controladorDieta = new ControladorDieta(this);
+        jButtonBuscar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButtonGuardar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButtonLimpiarForm.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButtonNuevo.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButtonSalir.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jLabelVolver.setCursor(new Cursor(Cursor.HAND_CURSOR));
         desdePanel = 0;
     }
     

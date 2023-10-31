@@ -59,7 +59,7 @@ public class ComidaData {
     
     public List<Comida> obtenerComidas() {
         ArrayList<Comida> comidasList = new ArrayList<>();
-        String sql = "SELECT * FROM nutris.comida";
+        String sql = "SELECT * FROM nutris.comida ORDER BY idComida";
         try (PreparedStatement ps = con.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();) {
             while (rs.next()) {

@@ -9,6 +9,7 @@ import Controladores.ControladorPacientesAdv;
 import Vistas.Render.RenderTable;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -44,6 +45,11 @@ public class PacientePanelAdv extends java.awt.Panel {
         setTableModel();
         this.pacientePanelMain = pacientePanelMain;
         controladorPacientesAdv = new ControladorPacientesAdv(this);
+        jButtonBuscar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButtonLimpiarForm.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButtonNuevo.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButtonSalir.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButtonVolver.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     private void setTableModel() {

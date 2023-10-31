@@ -6,6 +6,7 @@
 package Vistas;
 
 import java.awt.CardLayout;
+import java.awt.Cursor;
 
 /**
  *
@@ -21,6 +22,8 @@ public class DietaPanelMenu extends javax.swing.JPanel {
         initComponents();
 //        this.pacientePanel = pacientePanel;
 //        this.pacientePanelAdv = pacientePanelAdv;
+        jButton1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButton2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         this.dietaPanelMain = dietaPanelMain;
         cardLayout = (CardLayout) dietaPanelMain.getLayout();
     }
@@ -102,9 +105,8 @@ public class DietaPanelMenu extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(222, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(filler5, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)

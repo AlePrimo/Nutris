@@ -123,7 +123,7 @@ public class DietaData {
     }
 
     public List<Dieta> listarDietas() {
-        String sql = "SELECT * FROM nutris.dieta ";
+        String sql = "SELECT * FROM nutris.dieta ORDER BY idDieta";
         ArrayList<Dieta> dietasList = new ArrayList<>();
         try (PreparedStatement ps = con.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();) {

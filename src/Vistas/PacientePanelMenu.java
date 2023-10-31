@@ -6,6 +6,7 @@
 package Vistas;
 
 import java.awt.CardLayout;
+import java.awt.Cursor;
 
 /**
  *
@@ -21,6 +22,8 @@ public class PacientePanelMenu extends javax.swing.JPanel {
         initComponents();
 //        this.pacientePanel = pacientePanel;
 //        this.pacientePanelAdv = pacientePanelAdv;
+        jButton1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButton2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         this.pacientePanelMain = pacientePanelMain;
         cardLayout = (CardLayout) pacientePanelMain.getLayout();
     }

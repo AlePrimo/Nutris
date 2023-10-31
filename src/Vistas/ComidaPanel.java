@@ -7,6 +7,7 @@ package Vistas;
 
 import Controladores.ControladorComida;
 import Entidades.Comida;
+import java.awt.Cursor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -28,6 +29,13 @@ public class ComidaPanel extends java.awt.Panel {
         initComponents();
         this.comidaPanelMain = comidaPanelMain;
         controladorComida = new ControladorComida(this);
+        jButtonBuscar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButtonEliminar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButtonGuardar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButtonLimpiarForm.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButtonNuevo.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButtonSalir.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jLabelVolver.setCursor(new Cursor(Cursor.HAND_CURSOR));
         desdePanel = 0;
     }
     

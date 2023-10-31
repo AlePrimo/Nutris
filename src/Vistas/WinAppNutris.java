@@ -7,7 +7,9 @@ package Vistas;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -28,6 +30,10 @@ public class WinAppNutris extends javax.swing.JFrame {
     public WinAppNutris() {
         initComponents();
 //        animacionPNL = new AnimacionPNL(this, 10, 1, -90, new AtomicBoolean(true));
+        jLabelHome.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jLabelPaciente.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jLabelDieta.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jLabelComida.setCursor(new Cursor(Cursor.HAND_CURSOR));
         CrearPanels();
     }
 
@@ -86,7 +92,12 @@ public class WinAppNutris extends javax.swing.JFrame {
 
         jLabelDieta.setBackground(new java.awt.Color(62, 26, 26));
         jLabelDieta.setFont(new java.awt.Font("JetBrains Mono Thin", 0, 16)); // NOI18N
+        jLabelDieta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelDieta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Property48px.png"))); // NOI18N
         jLabelDieta.setText("Dieta");
+        jLabelDieta.setHorizontalAlignment(SwingConstants.CENTER);
+        jLabelDieta.setVerticalTextPosition(SwingConstants.BOTTOM);
+        jLabelDieta.setHorizontalTextPosition(SwingConstants.CENTER);
         jLabelDieta.setOpaque(true);
         jLabelDieta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -96,7 +107,12 @@ public class WinAppNutris extends javax.swing.JFrame {
 
         jLabelPaciente.setBackground(new java.awt.Color(62, 26, 26));
         jLabelPaciente.setFont(new java.awt.Font("JetBrains Mono Thin", 0, 16)); // NOI18N
+        jLabelPaciente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Person48px.png"))); // NOI18N
         jLabelPaciente.setText("Paciente");
+        jLabelPaciente.setHorizontalAlignment(SwingConstants.CENTER);
+        jLabelPaciente.setVerticalTextPosition(SwingConstants.BOTTOM);
+        jLabelPaciente.setHorizontalTextPosition(SwingConstants.CENTER);
         jLabelPaciente.setOpaque(true);
         jLabelPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -106,7 +122,12 @@ public class WinAppNutris extends javax.swing.JFrame {
 
         jLabelComida.setBackground(new java.awt.Color(62, 26, 26));
         jLabelComida.setFont(new java.awt.Font("JetBrains Mono Thin", 0, 16)); // NOI18N
+        jLabelComida.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelComida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Greek Salad48px.png"))); // NOI18N
         jLabelComida.setText("Comida");
+        jLabelComida.setHorizontalAlignment(SwingConstants.CENTER);
+        jLabelComida.setVerticalTextPosition(SwingConstants.BOTTOM);
+        jLabelComida.setHorizontalTextPosition(SwingConstants.CENTER);
         jLabelComida.setOpaque(true);
         jLabelComida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -116,7 +137,12 @@ public class WinAppNutris extends javax.swing.JFrame {
 
         jLabelHome.setBackground(new java.awt.Color(62, 26, 26));
         jLabelHome.setFont(new java.awt.Font("JetBrains Mono Thin", 0, 16)); // NOI18N
+        jLabelHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Home48px.png"))); // NOI18N
         jLabelHome.setText("Home");
+        jLabelHome.setHorizontalAlignment(SwingConstants.CENTER);
+        jLabelHome.setVerticalTextPosition(SwingConstants.BOTTOM);
+        jLabelHome.setHorizontalTextPosition(SwingConstants.CENTER);
         jLabelHome.setOpaque(true);
         jLabelHome.setPreferredSize(new java.awt.Dimension(80, 22));
         jLabelHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -130,25 +156,25 @@ public class WinAppNutris extends javax.swing.JFrame {
         PanelWestLayout.setHorizontalGroup(
             PanelWestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelWestLayout.createSequentialGroup()
-                .addGap(0, 10, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(PanelWestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelHome, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelComida, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabelHome, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelComida, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         PanelWestLayout.setVerticalGroup(
             PanelWestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelWestLayout.createSequentialGroup()
-                .addContainerGap(141, Short.MAX_VALUE)
-                .addComponent(jLabelHome, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(jLabelPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(jLabelDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(jLabelComida, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE)
+                .addComponent(jLabelHome, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jLabelPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jLabelDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jLabelComida, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         PanelPpal.add(PanelWest, java.awt.BorderLayout.WEST);

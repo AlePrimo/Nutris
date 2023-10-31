@@ -10,27 +10,43 @@ import Controladores.ControladorComida;
 import Controladores.ControladorComidaDietaPanel;
 import Entidades.Comida;
 import Entidades.Dieta;
+import Entidades.Horario;
+import java.awt.Cursor;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Administrador
  */
 public class ComidaDietaPanel extends javax.swing.JPanel {
+    
     private DefaultListModel<Comida> listModelComida = new DefaultListModel<>();
     private DefaultListModel<Dieta> listModelDieta = new DefaultListModel<>();
     private final ControladorComidaDietaPanel controladorComidaDietaPanel;
     private ComidaPanelMain comidaPanelMain;
     private ControladorComida controladorComida;
+    DefaultComboBoxModel<Horario> comboBoxModel = new DefaultComboBoxModel<>(Horario.values());
     private int desdePanel;
+    
+    
     /** Creates new form ComidaDietaPanel */
     public ComidaDietaPanel(ComidaPanelMain comidaPanelMain) {
         initComponents();
         this.comidaPanelMain = comidaPanelMain;
         controladorComidaDietaPanel = new ControladorComidaDietaPanel(this);
+        jButtonNuevaComida.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButtonNuevaDieta.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButtonSalir.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jLabelVolver.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jLabelIconoAgregar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jLabelIconoQuitar.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     /** This method is called from within the constructor to
@@ -42,25 +58,44 @@ public class ComidaDietaPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelMateriaPpal = new javax.swing.JPanel();
-        jPanelMateriaTitulo = new javax.swing.JPanel();
+        jPanelComidaDietaPpal = new javax.swing.JPanel();
+        jPanelComidaDietaitulo = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
         jLabelVolver = new javax.swing.JLabel();
-        jPanelMateriaForm = new javax.swing.JPanel();
+        jPanelComidaDietaForm = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListDieta = new javax.swing.JList<>(listModelDieta);
         jScrollPane2 = new javax.swing.JScrollPane();
         jListComida = new javax.swing.JList<>(listModelComida);
-        jPanelMateriaBotones = new javax.swing.JPanel();
-        jButtonNuevo = new javax.swing.JButton();
-        jButtonEliminar = new javax.swing.JButton();
-        jButtonGuardar = new javax.swing.JButton();
+        jLabelDer = new javax.swing.JLabel();
+        jLabelDietas = new javax.swing.JLabel();
+        jLabelAsociar = new javax.swing.JLabel();
+        jCheckBoxComidaDieta = new javax.swing.JCheckBox();
+        jLabelComida = new javax.swing.JLabel();
+        jLabelIzq = new javax.swing.JLabel();
+        jCheckBoxConSin = new javax.swing.JCheckBox();
+        jPanelAgregarQuitar = new javax.swing.JPanel();
+        jPanelAgregar = new javax.swing.JPanel();
+        jLabelIconoAgregar = new javax.swing.JLabel();
+        jPanelAgregarComidaDieta = new javax.swing.JPanel();
+        jLabelAgregar = new javax.swing.JLabel();
+        jLabelAgregarComidaDieta = new javax.swing.JLabel();
+        jPanelQuitar = new javax.swing.JPanel();
+        jLabelIconoQuitar = new javax.swing.JLabel();
+        jPanelQuitarComidaDieta = new javax.swing.JPanel();
+        jLabelQuitar = new javax.swing.JLabel();
+        jLabelQuitarComidaDieta = new javax.swing.JLabel();
+        jLabelHorario = new javax.swing.JLabel();
+        jComboBoxHorario = new javax.swing.JComboBox<>(comboBoxModel);
+        jButtonNuevaDieta = new javax.swing.JButton();
+        jButtonNuevaComida = new javax.swing.JButton();
+        jPanelComidaDietaBotones = new javax.swing.JPanel();
         jButtonSalir = new javax.swing.JButton();
 
-        jPanelMateriaPpal.setPreferredSize(new java.awt.Dimension(640, 480));
-        jPanelMateriaPpal.setLayout(new java.awt.BorderLayout());
+        jPanelComidaDietaPpal.setPreferredSize(new java.awt.Dimension(640, 480));
+        jPanelComidaDietaPpal.setLayout(new java.awt.BorderLayout());
 
-        jPanelMateriaTitulo.setBackground(new java.awt.Color(39, 54, 64));
+        jPanelComidaDietaitulo.setBackground(new java.awt.Color(39, 54, 64));
 
         jLabelTitulo.setFont(new java.awt.Font("JetBrains Mono NL ExtraBold", 1, 36)); // NOI18N
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -75,27 +110,27 @@ public class ComidaDietaPanel extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanelMateriaTituloLayout = new javax.swing.GroupLayout(jPanelMateriaTitulo);
-        jPanelMateriaTitulo.setLayout(jPanelMateriaTituloLayout);
-        jPanelMateriaTituloLayout.setHorizontalGroup(
-            jPanelMateriaTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMateriaTituloLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelComidaDietaituloLayout = new javax.swing.GroupLayout(jPanelComidaDietaitulo);
+        jPanelComidaDietaitulo.setLayout(jPanelComidaDietaituloLayout);
+        jPanelComidaDietaituloLayout.setHorizontalGroup(
+            jPanelComidaDietaituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelComidaDietaituloLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelVolver)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(496, Short.MAX_VALUE))
         );
-        jPanelMateriaTituloLayout.setVerticalGroup(
-            jPanelMateriaTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMateriaTituloLayout.createSequentialGroup()
-                .addGroup(jPanelMateriaTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelComidaDietaituloLayout.setVerticalGroup(
+            jPanelComidaDietaituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelComidaDietaituloLayout.createSequentialGroup()
+                .addGroup(jPanelComidaDietaituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 7, Short.MAX_VALUE))
         );
 
-        jPanelMateriaPpal.add(jPanelMateriaTitulo, java.awt.BorderLayout.NORTH);
+        jPanelComidaDietaPpal.add(jPanelComidaDietaitulo, java.awt.BorderLayout.NORTH);
 
         jListDieta.setFont(new java.awt.Font("JetBrains Mono NL Thin", 0, 14)); // NOI18N
         jListDieta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -113,118 +148,239 @@ public class ComidaDietaPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jListComida);
 
-        javax.swing.GroupLayout jPanelMateriaFormLayout = new javax.swing.GroupLayout(jPanelMateriaForm);
-        jPanelMateriaForm.setLayout(jPanelMateriaFormLayout);
-        jPanelMateriaFormLayout.setHorizontalGroup(
-            jPanelMateriaFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMateriaFormLayout.createSequentialGroup()
-                .addContainerGap(615, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
-            .addGroup(jPanelMateriaFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelMateriaFormLayout.createSequentialGroup()
-                    .addGap(60, 60, 60)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(605, Short.MAX_VALUE)))
-        );
-        jPanelMateriaFormLayout.setVerticalGroup(
-            jPanelMateriaFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMateriaFormLayout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jLabelDer.setFont(new java.awt.Font("JetBrains Mono NL Thin", 0, 18)); // NOI18N
+        jLabelDer.setText("Comida");
+
+        jLabelDietas.setFont(new java.awt.Font("JetBrains Mono NL Thin", 0, 18)); // NOI18N
+        jLabelDietas.setText("Dietas:");
+
+        jLabelAsociar.setFont(new java.awt.Font("JetBrains Mono NL Thin", 0, 18)); // NOI18N
+        jLabelAsociar.setText("Asociar Por:");
+
+        jCheckBoxComidaDieta.setFont(new java.awt.Font("JetBrains Mono NL Thin", 0, 14)); // NOI18N
+        jCheckBoxComidaDieta.setSelected(true);
+        jCheckBoxComidaDieta.setText("Dietas");
+        jCheckBoxComidaDieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxComidaDietaActionPerformed(evt);
+            }
+        });
+
+        jLabelComida.setFont(new java.awt.Font("JetBrains Mono NL Thin", 0, 18)); // NOI18N
+        jLabelComida.setText("Comidas:");
+
+        jLabelIzq.setFont(new java.awt.Font("JetBrains Mono NL Thin", 0, 18)); // NOI18N
+        jLabelIzq.setText("Dieta");
+
+        jCheckBoxConSin.setFont(new java.awt.Font("JetBrains Mono NL Thin", 0, 18)); // NOI18N
+        jCheckBoxConSin.setSelected(true);
+        jCheckBoxConSin.setText("con");
+        jCheckBoxConSin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxConSinActionPerformed(evt);
+            }
+        });
+
+        jPanelAgregarQuitar.setLayout(new java.awt.CardLayout());
+
+        jLabelIconoAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Add48px.png"))); // NOI18N
+
+        jLabelAgregar.setFont(new java.awt.Font("JetBrains Mono NL Thin", 1, 14)); // NOI18N
+        jLabelAgregar.setText("Agregar");
+
+        jLabelAgregarComidaDieta.setFont(new java.awt.Font("JetBrains Mono NL Thin", 1, 14)); // NOI18N
+        jLabelAgregarComidaDieta.setText("Comida");
+
+        javax.swing.GroupLayout jPanelAgregarComidaDietaLayout = new javax.swing.GroupLayout(jPanelAgregarComidaDieta);
+        jPanelAgregarComidaDieta.setLayout(jPanelAgregarComidaDietaLayout);
+        jPanelAgregarComidaDietaLayout.setHorizontalGroup(
+            jPanelAgregarComidaDietaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAgregarComidaDietaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(jLabelAgregarComidaDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jPanelMateriaFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMateriaFormLayout.createSequentialGroup()
-                    .addContainerGap(95, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+        );
+        jPanelAgregarComidaDietaLayout.setVerticalGroup(
+            jPanelAgregarComidaDietaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAgregarComidaDietaLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanelAgregarComidaDietaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelAgregarComidaDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
-        jPanelMateriaPpal.add(jPanelMateriaForm, java.awt.BorderLayout.CENTER);
+        javax.swing.GroupLayout jPanelAgregarLayout = new javax.swing.GroupLayout(jPanelAgregar);
+        jPanelAgregar.setLayout(jPanelAgregarLayout);
+        jPanelAgregarLayout.setHorizontalGroup(
+            jPanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAgregarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelIconoAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanelAgregarLayout.createSequentialGroup()
+                .addContainerGap(46, Short.MAX_VALUE)
+                .addComponent(jPanelAgregarComidaDieta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+        jPanelAgregarLayout.setVerticalGroup(
+            jPanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAgregarLayout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jLabelIconoAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelAgregarComidaDieta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
 
-        jButtonNuevo.setFont(new java.awt.Font("JetBrains Mono NL Thin", 0, 14)); // NOI18N
-        jButtonNuevo.setText("Nuevo");
-        jButtonNuevo.setMaximumSize(new java.awt.Dimension(200, 40));
-        jButtonNuevo.setMinimumSize(new java.awt.Dimension(75, 30));
-        jButtonNuevo.setPreferredSize(new java.awt.Dimension(75, 35));
-        jButtonNuevo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jButtonNuevoFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jButtonNuevoFocusLost(evt);
-            }
-        });
-        jButtonNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonNuevoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonNuevoMouseExited(evt);
-            }
-        });
-        jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNuevoActionPerformed(evt);
-            }
-        });
+        jPanelAgregarQuitar.add(jPanelAgregar, "cardAgregar");
+        jPanelAgregar.getAccessibleContext().setAccessibleName("");
 
-        jButtonEliminar.setFont(new java.awt.Font("JetBrains Mono NL Thin", 0, 14)); // NOI18N
-        jButtonEliminar.setText("Eliminar");
-        jButtonEliminar.setMaximumSize(new java.awt.Dimension(200, 40));
-        jButtonEliminar.setMinimumSize(new java.awt.Dimension(102, 30));
-        jButtonEliminar.setPreferredSize(new java.awt.Dimension(150, 35));
-        jButtonEliminar.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jButtonEliminarFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jButtonEliminarFocusLost(evt);
-            }
-        });
-        jButtonEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonEliminarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonEliminarMouseExited(evt);
-            }
-        });
-        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEliminarActionPerformed(evt);
-            }
-        });
+        jLabelIconoQuitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Minus48px.png"))); // NOI18N
 
-        jButtonGuardar.setFont(new java.awt.Font("JetBrains Mono NL Thin", 0, 14)); // NOI18N
-        jButtonGuardar.setText("Guardar");
-        jButtonGuardar.setMaximumSize(new java.awt.Dimension(200, 40));
-        jButtonGuardar.setMinimumSize(new java.awt.Dimension(93, 30));
-        jButtonGuardar.setPreferredSize(new java.awt.Dimension(93, 35));
-        jButtonGuardar.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jButtonGuardarFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jButtonGuardarFocusLost(evt);
-            }
-        });
-        jButtonGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonGuardarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonGuardarMouseExited(evt);
-            }
-        });
-        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGuardarActionPerformed(evt);
-            }
-        });
+        jLabelQuitar.setFont(new java.awt.Font("JetBrains Mono NL Thin", 1, 14)); // NOI18N
+        jLabelQuitar.setText("Quitar");
+
+        jLabelQuitarComidaDieta.setFont(new java.awt.Font("JetBrains Mono NL Thin", 1, 14)); // NOI18N
+        jLabelQuitarComidaDieta.setText("Comida");
+
+        javax.swing.GroupLayout jPanelQuitarComidaDietaLayout = new javax.swing.GroupLayout(jPanelQuitarComidaDieta);
+        jPanelQuitarComidaDieta.setLayout(jPanelQuitarComidaDietaLayout);
+        jPanelQuitarComidaDietaLayout.setHorizontalGroup(
+            jPanelQuitarComidaDietaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelQuitarComidaDietaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(jLabelQuitarComidaDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanelQuitarComidaDietaLayout.setVerticalGroup(
+            jPanelQuitarComidaDietaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelQuitarComidaDietaLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanelQuitarComidaDietaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelQuitarComidaDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanelQuitarLayout = new javax.swing.GroupLayout(jPanelQuitar);
+        jPanelQuitar.setLayout(jPanelQuitarLayout);
+        jPanelQuitarLayout.setHorizontalGroup(
+            jPanelQuitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelQuitarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelIconoQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanelQuitarLayout.createSequentialGroup()
+                .addContainerGap(46, Short.MAX_VALUE)
+                .addComponent(jPanelQuitarComidaDieta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+        jPanelQuitarLayout.setVerticalGroup(
+            jPanelQuitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelQuitarLayout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jLabelIconoQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelQuitarComidaDieta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
+        jPanelAgregarQuitar.add(jPanelQuitar, "cardQuitar");
+
+        jLabelHorario.setFont(new java.awt.Font("JetBrains Mono NL Thin", 0, 18)); // NOI18N
+        jLabelHorario.setText("Horario:");
+
+        jComboBoxHorario.setFont(new java.awt.Font("JetBrains Mono NL Thin", 0, 16)); // NOI18N
+
+        jButtonNuevaDieta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Restaurant Menu48px.png"))); // NOI18N
+        jButtonNuevaDieta.setToolTipText("Crear Dieta");
+
+        jButtonNuevaComida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Greek Salad48px.png"))); // NOI18N
+        jButtonNuevaComida.setToolTipText("Crear Comida");
+
+        javax.swing.GroupLayout jPanelComidaDietaFormLayout = new javax.swing.GroupLayout(jPanelComidaDietaForm);
+        jPanelComidaDietaForm.setLayout(jPanelComidaDietaFormLayout);
+        jPanelComidaDietaFormLayout.setHorizontalGroup(
+            jPanelComidaDietaFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelComidaDietaFormLayout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addGroup(jPanelComidaDietaFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelComidaDietaFormLayout.createSequentialGroup()
+                        .addComponent(jLabelDietas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonNuevaDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(jPanelComidaDietaFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelComidaDietaFormLayout.createSequentialGroup()
+                        .addGroup(jPanelComidaDietaFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelComidaDietaFormLayout.createSequentialGroup()
+                                .addComponent(jLabelAsociar)
+                                .addGap(25, 25, 25))
+                            .addGroup(jPanelComidaDietaFormLayout.createSequentialGroup()
+                                .addComponent(jLabelIzq, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(17, 17, 17)
+                                .addComponent(jCheckBoxConSin)
+                                .addGap(18, 18, 18)))
+                        .addGroup(jPanelComidaDietaFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jCheckBoxComidaDieta)
+                            .addComponent(jLabelDer, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanelAgregarQuitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanelComidaDietaFormLayout.createSequentialGroup()
+                        .addComponent(jLabelHorario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jComboBoxHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addGroup(jPanelComidaDietaFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelComidaDietaFormLayout.createSequentialGroup()
+                        .addComponent(jLabelComida)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonNuevaComida, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        jPanelComidaDietaFormLayout.setVerticalGroup(
+            jPanelComidaDietaFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelComidaDietaFormLayout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addGroup(jPanelComidaDietaFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelDietas)
+                    .addComponent(jLabelComida)
+                    .addComponent(jButtonNuevaDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonNuevaComida, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelComidaDietaFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelComidaDietaFormLayout.createSequentialGroup()
+                        .addGroup(jPanelComidaDietaFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelAsociar)
+                            .addComponent(jCheckBoxComidaDieta))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanelComidaDietaFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelDer, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelIzq, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBoxConSin))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanelAgregarQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelComidaDietaFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelHorario)
+                            .addComponent(jComboBoxHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+
+        jPanelComidaDietaPpal.add(jPanelComidaDietaForm, java.awt.BorderLayout.CENTER);
 
         jButtonSalir.setFont(new java.awt.Font("JetBrains Mono NL Thin", 0, 14)); // NOI18N
+        jButtonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/CloseWindow.png"))); // NOI18N
         jButtonSalir.setText("Salir");
+        jButtonSalir.setToolTipText("Salir del Programa");
         jButtonSalir.setMaximumSize(new java.awt.Dimension(200, 40));
         jButtonSalir.setMinimumSize(new java.awt.Dimension(75, 30));
         jButtonSalir.setPreferredSize(new java.awt.Dimension(75, 35));
@@ -250,34 +406,24 @@ public class ComidaDietaPanel extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanelMateriaBotonesLayout = new javax.swing.GroupLayout(jPanelMateriaBotones);
-        jPanelMateriaBotones.setLayout(jPanelMateriaBotonesLayout);
-        jPanelMateriaBotonesLayout.setHorizontalGroup(
-            jPanelMateriaBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMateriaBotonesLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout jPanelComidaDietaBotonesLayout = new javax.swing.GroupLayout(jPanelComidaDietaBotones);
+        jPanelComidaDietaBotones.setLayout(jPanelComidaDietaBotonesLayout);
+        jPanelComidaDietaBotonesLayout.setHorizontalGroup(
+            jPanelComidaDietaBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelComidaDietaBotonesLayout.createSequentialGroup()
+                .addContainerGap(729, Short.MAX_VALUE)
+                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
-        jPanelMateriaBotonesLayout.setVerticalGroup(
-            jPanelMateriaBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMateriaBotonesLayout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addGroup(jPanelMateriaBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+        jPanelComidaDietaBotonesLayout.setVerticalGroup(
+            jPanelComidaDietaBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelComidaDietaBotonesLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
 
-        jPanelMateriaPpal.add(jPanelMateriaBotones, java.awt.BorderLayout.SOUTH);
+        jPanelComidaDietaPpal.add(jPanelComidaDietaBotones, java.awt.BorderLayout.SOUTH);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -285,78 +431,18 @@ public class ComidaDietaPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jPanelMateriaPpal, javax.swing.GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE)
+                .addComponent(jPanelComidaDietaPpal, javax.swing.GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelMateriaPpal, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(jPanelComidaDietaPpal, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabelVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVolverMouseClicked
         controladorComidaDietaPanel.labelVolverMouseClicked(evt);
     }//GEN-LAST:event_jLabelVolverMouseClicked
-
-    private void jButtonNuevoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonNuevoFocusGained
-        controladorComidaDietaPanel.buttonNuevoFocusGained(evt);
-    }//GEN-LAST:event_jButtonNuevoFocusGained
-
-    private void jButtonNuevoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonNuevoFocusLost
-        controladorComidaDietaPanel.buttonNuevoFocusLost(evt);
-    }//GEN-LAST:event_jButtonNuevoFocusLost
-
-    private void jButtonNuevoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNuevoMouseEntered
-        controladorComidaDietaPanel.buttonNuevoMouseEntered(evt);
-    }//GEN-LAST:event_jButtonNuevoMouseEntered
-
-    private void jButtonNuevoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNuevoMouseExited
-        controladorComidaDietaPanel.buttonNuevoMouseExited(evt);
-    }//GEN-LAST:event_jButtonNuevoMouseExited
-
-    private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
-        controladorComidaDietaPanel.nuevoMateriaActionPerformed(evt);
-    }//GEN-LAST:event_jButtonNuevoActionPerformed
-
-    private void jButtonEliminarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonEliminarFocusGained
-        controladorComidaDietaPanel.buttonEliminarFocusGained(evt);
-    }//GEN-LAST:event_jButtonEliminarFocusGained
-
-    private void jButtonEliminarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonEliminarFocusLost
-        controladorComidaDietaPanel.buttonEliminarFocusLost(evt);
-    }//GEN-LAST:event_jButtonEliminarFocusLost
-
-    private void jButtonEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEliminarMouseEntered
-        controladorComidaDietaPanel.buttonEliminarMouseEntered(evt);
-    }//GEN-LAST:event_jButtonEliminarMouseEntered
-
-    private void jButtonEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEliminarMouseExited
-        controladorComidaDietaPanel.buttonEliminarMouseExited(evt);
-    }//GEN-LAST:event_jButtonEliminarMouseExited
-
-    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
-        controladorComidaDietaPanel.eliminarMateriaActionPerformed(evt);
-    }//GEN-LAST:event_jButtonEliminarActionPerformed
-
-    private void jButtonGuardarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonGuardarFocusGained
-        controladorComidaDietaPanel.buttonGuardarFocusGained(evt);
-    }//GEN-LAST:event_jButtonGuardarFocusGained
-
-    private void jButtonGuardarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonGuardarFocusLost
-        controladorComidaDietaPanel.buttonGuardarFocusLost(evt);
-    }//GEN-LAST:event_jButtonGuardarFocusLost
-
-    private void jButtonGuardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGuardarMouseEntered
-        controladorComidaDietaPanel.buttonGuardarMouseEntered(evt);
-    }//GEN-LAST:event_jButtonGuardarMouseEntered
-
-    private void jButtonGuardarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGuardarMouseExited
-        controladorComidaDietaPanel.buttonGuardarMouseExited(evt);
-    }//GEN-LAST:event_jButtonGuardarMouseExited
-
-    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        controladorComidaDietaPanel.guardarMateriaActionPerformed(evt);
-    }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonSalirFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonSalirFocusGained
         controladorComidaDietaPanel.buttonSalirFocusGained(evt);
@@ -386,20 +472,47 @@ public class ComidaDietaPanel extends javax.swing.JPanel {
         controladorComidaDietaPanel.listDietaMouseClicked(evt);
     }//GEN-LAST:event_jListDietaMouseClicked
 
+    private void jCheckBoxComidaDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxComidaDietaActionPerformed
+        controladorComidaDietaPanel.checkBoxComidaDietaActionPerformed(evt);
+    }//GEN-LAST:event_jCheckBoxComidaDietaActionPerformed
+
+    private void jCheckBoxConSinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxConSinActionPerformed
+        controladorComidaDietaPanel.CheckBoxConSinActionPerformed(evt);
+    }//GEN-LAST:event_jCheckBoxConSinActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonEliminar;
-    private javax.swing.JButton jButtonGuardar;
-    private javax.swing.JButton jButtonNuevo;
+    private javax.swing.JButton jButtonNuevaComida;
+    private javax.swing.JButton jButtonNuevaDieta;
     private javax.swing.JButton jButtonSalir;
+    private javax.swing.JCheckBox jCheckBoxComidaDieta;
+    private javax.swing.JCheckBox jCheckBoxConSin;
+    private javax.swing.JComboBox<Horario> jComboBoxHorario;
+    private javax.swing.JLabel jLabelAgregar;
+    private javax.swing.JLabel jLabelAgregarComidaDieta;
+    private javax.swing.JLabel jLabelAsociar;
+    private javax.swing.JLabel jLabelComida;
+    private javax.swing.JLabel jLabelDer;
+    private javax.swing.JLabel jLabelDietas;
+    private javax.swing.JLabel jLabelHorario;
+    private javax.swing.JLabel jLabelIconoAgregar;
+    private javax.swing.JLabel jLabelIconoQuitar;
+    private javax.swing.JLabel jLabelIzq;
+    private javax.swing.JLabel jLabelQuitar;
+    private javax.swing.JLabel jLabelQuitarComidaDieta;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JLabel jLabelVolver;
     private javax.swing.JList<Comida> jListComida;
     private javax.swing.JList<Dieta> jListDieta;
-    private javax.swing.JPanel jPanelMateriaBotones;
-    private javax.swing.JPanel jPanelMateriaForm;
-    private javax.swing.JPanel jPanelMateriaPpal;
-    private javax.swing.JPanel jPanelMateriaTitulo;
+    private javax.swing.JPanel jPanelAgregar;
+    private javax.swing.JPanel jPanelAgregarComidaDieta;
+    private javax.swing.JPanel jPanelAgregarQuitar;
+    private javax.swing.JPanel jPanelComidaDietaBotones;
+    private javax.swing.JPanel jPanelComidaDietaForm;
+    private javax.swing.JPanel jPanelComidaDietaPpal;
+    private javax.swing.JPanel jPanelComidaDietaitulo;
+    private javax.swing.JPanel jPanelQuitar;
+    private javax.swing.JPanel jPanelQuitarComidaDieta;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
@@ -420,18 +533,6 @@ public class ComidaDietaPanel extends javax.swing.JPanel {
         return desdePanel;
     }
 
-    public JButton getjButtonEliminar() {
-        return jButtonEliminar;
-    }
-
-    public JButton getjButtonGuardar() {
-        return jButtonGuardar;
-    }
-
-    public JButton getjButtonNuevo() {
-        return jButtonNuevo;
-    }
-
     public JButton getjButtonSalir() {
         return jButtonSalir;
     }
@@ -447,4 +548,68 @@ public class ComidaDietaPanel extends javax.swing.JPanel {
     public JList<Comida> getjListComida() {
         return jListComida;
     }
+
+    public DefaultComboBoxModel<Horario> getComboBoxModel() {
+        return comboBoxModel;
+    }
+
+    public JButton getjButtonNuevaComida() {
+        return jButtonNuevaComida;
+    }
+
+    public JButton getjButtonNuevaDieta() {
+        return jButtonNuevaDieta;
+    }
+
+    public JCheckBox getjCheckBoxComidaDieta() {
+        return jCheckBoxComidaDieta;
+    }
+
+    public JCheckBox getjCheckBoxConSin() {
+        return jCheckBoxConSin;
+    }
+
+    public JComboBox<Horario> getjComboBoxHorario() {
+        return jComboBoxHorario;
+    }
+
+    public JLabel getjLabelAgregarComidaDieta() {
+        return jLabelAgregarComidaDieta;
+    }
+
+    public JLabel getjLabelIconoAgregar() {
+        return jLabelIconoAgregar;
+    }
+
+    public JLabel getjLabelIconoQuitar() {
+        return jLabelIconoQuitar;
+    }
+
+    public JLabel getjLabelQuitarComidaDieta() {
+        return jLabelQuitarComidaDieta;
+    }
+
+    public JLabel getjLabelDer() {
+        return jLabelDer;
+    }
+
+    public JLabel getjLabelIzq() {
+        return jLabelIzq;
+    }
+
+//    public JPanel getjPanelComidaDietaForm() {
+//        return jPanelComidaDietaForm;
+//    }
+    
+//    public JPanel getjPanelAgregarComidaDieta() {
+//        return jPanelAgregarComidaDieta;
+//    }
+
+    public JPanel getjPanelAgregarQuitar() {
+        return jPanelAgregarQuitar;
+    }
+    
+    
+    
+    
 }

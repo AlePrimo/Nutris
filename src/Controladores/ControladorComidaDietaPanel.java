@@ -10,9 +10,12 @@ import AccesoADatos.DietaComidaData;
 import AccesoADatos.DietaData;
 import Entidades.Comida;
 import Entidades.Dieta;
+import Entidades.Horario;
 import Util.SetConnValues;
 import Vistas.ComidaDietaPanel;
 import Vistas.ComidaPanelMain;
+import java.awt.CardLayout;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseEvent;
@@ -23,8 +26,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import nutris.Conexion;
 
 /**
@@ -32,52 +38,74 @@ import nutris.Conexion;
  * @author Administrador
  */
 public class ControladorComidaDietaPanel {
-    
+
     private final String driverDB = SetConnValues.getTipoDB();
-    
+
     private final ComidaPanelMain comidaPanelMain;
     private final ComidaDietaPanel comidaDietaPanel;
     private ComidaData comidaData;
     private DietaData dietaData;
     private DietaComidaData dietaComidaData;
-    private final Comida comida;
+    private Comida comida;
     private List<Comida> comidas;
+    private Dieta dieta;
     private List<Dieta> dietas;
-    
-//    private final JButton jButtonLimpiarForm;
-//    private final JButton jButtonBuscar;
-    private final JButton jButtonEliminar;
-    private final JButton jButtonGuardar;
-    private final JButton jButtonNuevo;
+
     private final JButton jButtonSalir;
-    
+    private JButton jButtonNuevaComida;
+    private JButton jButtonNuevaDieta;
+
     private JLabel jLabelVolver;
-    
+    private JLabel jLabelAgregarComidaDieta;
+    private JLabel jLabelIconoAgregar;
+    private JLabel jLabelIconoQuitar;
+    private JLabel jLabelQuitarComidaDieta;
+    private JLabel jLabelIzq;
+    private JLabel jLabelDer;
+
+    private JCheckBox jCheckBoxComidaDieta;
+    private JCheckBox jCheckBoxConSin;
+    private JComboBox<Horario> jComboBoxHorario;
+
     private JList jListComida;
     private JList jListDieta;
     private DefaultListModel<Comida> listModelComida;
     private DefaultListModel<Dieta> listModelDieta;
-    
-//    private final Efecto efecto;
 
+    private int desdePanel;
+    private JPanel jPanelAgregarQuitar;
+    private int n1;
+    private int n2;
+
+//    private final Efecto efecto;
     public ControladorComidaDietaPanel(ComidaDietaPanel comidaDietaPanel) {
         this.comidaDietaPanel = comidaDietaPanel;
         comidaPanelMain = comidaDietaPanel.getComidaPanelMain();
+        jPanelAgregarQuitar = comidaDietaPanel.getjPanelAgregarQuitar();
         comida = null;
         comidas = new ArrayList<>();
-        
+
         jButtonSalir = comidaDietaPanel.getjButtonSalir();
-        jButtonGuardar = comidaDietaPanel.getjButtonGuardar();
-        jButtonEliminar = comidaDietaPanel.getjButtonEliminar();
-        jButtonNuevo = comidaDietaPanel.getjButtonNuevo();
-        
+        jButtonNuevaComida = comidaDietaPanel.getjButtonNuevaComida();
+        jButtonNuevaDieta = comidaDietaPanel.getjButtonNuevaDieta();
+
         jLabelVolver = comidaDietaPanel.getjLabelVolver();
-        
+        jLabelAgregarComidaDieta = comidaDietaPanel.getjLabelAgregarComidaDieta();
+        jLabelIconoQuitar = comidaDietaPanel.getjLabelIconoQuitar();
+        jLabelQuitarComidaDieta = comidaDietaPanel.getjLabelQuitarComidaDieta();
+        jLabelIconoAgregar = comidaDietaPanel.getjLabelIconoAgregar();
+        jLabelIzq = comidaDietaPanel.getjLabelIzq();
+        jLabelDer = comidaDietaPanel.getjLabelDer();
+
+        jCheckBoxComidaDieta = comidaDietaPanel.getjCheckBoxComidaDieta();
+        jCheckBoxConSin = comidaDietaPanel.getjCheckBoxConSin();
+        jComboBoxHorario = comidaDietaPanel.getjComboBoxHorario();
+
         jListComida = comidaDietaPanel.getjListComida();
         jListDieta = comidaDietaPanel.getjListDieta();
         listModelComida = comidaDietaPanel.getListModelComida();
         listModelDieta = comidaDietaPanel.getListModelDieta();
-        
+
         try {
             comidaData = new ComidaData(Conexion.getConexion(driverDB));
             dietaData = new DietaData(Conexion.getConexion(driverDB));
@@ -86,21 +114,80 @@ public class ControladorComidaDietaPanel {
             Logger.getLogger(ControladorComidaDietaPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        cargarComida();
-        cargarDieta();
-        
+        evaluarCondiciones();
     }
 
-    private void cargarComida(){
-        comidas = comidaData.obtenerComidas();
+    private void evaluarCondiciones() {
+            CardLayout cardLayout = (CardLayout) jPanelAgregarQuitar.getLayout();
+        if (jCheckBoxComidaDieta.isSelected()) {
+            n1 = 0;
+            jCheckBoxComidaDieta.setText("Dietas");
+            jLabelIzq.setText("Dieta");
+            jLabelDer.setText("Comida");
+            jLabelAgregarComidaDieta.setText("Comida");
+            jLabelQuitarComidaDieta.setText("Comida");
+            if (jCheckBoxConSin.isSelected()) {
+                n2 =1;
+                jCheckBoxConSin.setText("con");
+                cardLayout.show(jPanelAgregarQuitar, "cardQuitar");
+            }
+            else {
+                n2 =2;
+                jCheckBoxConSin.setText("sin");
+                cardLayout.show(jPanelAgregarQuitar, "cardAgregar");
+            }
+        }else{
+            n2 = 0;
+            jCheckBoxComidaDieta.setText("Comidas");
+            jLabelIzq.setText("Comida");
+            jLabelDer.setText("Dieta");
+            jLabelAgregarComidaDieta.setText("Dieta");
+            jLabelQuitarComidaDieta.setText("Dieta");
+            if (jCheckBoxConSin.isSelected()) {
+                n1 = 1;
+                jCheckBoxConSin.setText("con");
+                cardLayout.show(jPanelAgregarQuitar, "cardQuitar");
+            }
+            else {
+                n1 = 2;
+                jCheckBoxConSin.setText("sin");
+                cardLayout.show(jPanelAgregarQuitar, "cardAgregar");
+            }
+        }
+        cargarDieta(n1);
+        cargarComida(n2);
+    }
+
+    private void cargarComida(int n) {
+//        if(n>0)listModelComida.clear();
+        switch (n) {
+            case 0:
+                comidas = comidaData.obtenerComidas();
+                break;
+            case 1:
+                comidas = dietaComidaData.ListarComidasEnDieta(jListDieta.getSelectedIndex());
+                break;
+            case 2:
+                comidas = dietaComidaData.ListarNoComidasEnDieta(jListDieta.getSelectedIndex());
+        }
         comidas.forEach(c -> listModelComida.addElement(c));
     }
-    
-    private void cargarDieta(){
-        dietas = dietaData.listarDietas();
+
+    private void cargarDieta(int n) {
+//        if(n>0)listModelDieta.clear();
+        switch (n) {
+            case 0:
+                dietas = dietaData.listarDietas();
+                break;
+            case 1:
+                dietas = dietaComidaData.ListarDietasDeComida(jListComida.getSelectedIndex());
+                break;
+            case 2:
+                dietas = dietaComidaData.ListarNoDietasDeComida(jListComida.getSelectedIndex());
+        }
         dietas.forEach(d -> listModelDieta.addElement(d));
     }
-    
+
     public void salirMateriaActionPerformed(ActionEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -186,23 +273,42 @@ public class ControladorComidaDietaPanel {
     }
 
     public void listComidaMouseClicked(MouseEvent evt) {
-        if (evt.getClickCount() == 2) {
-            int selectedIndex = jListComida.getSelectedIndex();
-            if (selectedIndex >= 0) {
-                Comida comidaSeleccionada = (Comida) jListComida.getModel().getElementAt(selectedIndex);
-                System.out.println("Comida seleccionada: " + comidaSeleccionada);
-            }
+//        if (evt.getClickCount() == 2) {
+        int selectedIndex = jListComida.getSelectedIndex();
+        if (selectedIndex >= 0) {
+            comida = (Comida) jListComida.getModel().getElementAt(selectedIndex);
+            System.out.println("Comida seleccionada: " + comida);
+        }
+//        }
+        if (n1 > 0) {
+            listModelDieta.clear();
+            evaluarCondiciones();
+        }
+        if(comida != null && dieta != null){
+            dietaComidaData.
         }
     }
 
     public void listDietaMouseClicked(MouseEvent evt) {
-        if (evt.getClickCount() == 2) {
-            int selectedIndex = jListDieta.getSelectedIndex();
-            if (selectedIndex >= 0) {
-                Dieta dietaSeleccionada = (Dieta) jListDieta.getModel().getElementAt(selectedIndex);
-                System.out.println("Dieta seleccionada: " + dietaSeleccionada);
-            }
+//        if (evt.getClickCount() == 2) {
+        int selectedIndex = jListDieta.getSelectedIndex();
+        if (selectedIndex >= 0) {
+            dieta = (Dieta) jListDieta.getModel().getElementAt(selectedIndex);
+            System.out.println("Dieta seleccionada: " + dieta);
+        }
+//        }
+        if (n2 > 0) {
+            listModelComida.clear();
+            evaluarCondiciones();
         }
     }
-    
+
+    public void checkBoxComidaDietaActionPerformed(ActionEvent evt) {
+        evaluarCondiciones();
+    }
+
+    public void CheckBoxConSinActionPerformed(ActionEvent evt) {
+        evaluarCondiciones();
+    }
+
 }

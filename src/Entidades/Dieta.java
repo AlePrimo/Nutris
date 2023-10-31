@@ -111,7 +111,7 @@ public class Dieta {
 
     @Override
     public String toString() {
-        return idDieta + "-" + nombre + "||" + (estado?"Terminada":"En Curso");
+        return idDieta + "-" + nombre;
     }
     
     

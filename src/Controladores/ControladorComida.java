@@ -224,6 +224,21 @@ public class ControladorComida {
                 textoEnCaloriasCambiado(e);
             }
         });
+        
+        jTextDetalle.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                textoEnDetalleCambiado(e);
+            }
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                textoEnDetalleCambiado(e);
+            }
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                textoEnDetalleCambiado(e);
+            }
+        });
     }
     
     public void buttonLimpiarFormActionPerformed(ActionEvent evt) {
@@ -465,13 +480,13 @@ public class ControladorComida {
     public void textoEnNombreCambiado(javax.swing.event.DocumentEvent e) {
         if (Validador.validarTextoYEspacio(jTextFieldNombre.getText())&&jTextFieldNombre.getText().length()<100) {
             isOkNombre = true;
-            if (comida.getNombre() != null) {
+            if (comida != null) {
                 isNombreModified = !comida.getNombre().equals(jTextFieldNombre.getText());
                 estadoBttnGuardar();
             }
             if (jTextFieldNombre.getText().isEmpty()) {
                 isOkNombre = false;
-            }
+            } else jButtonLimpiarForm.setEnabled(true);
             if (isThreadNombre) {
                 manejadorAnimacionLBL.detenerAnimacion(jLabelNombre);
                 isThreadNombre = !isThreadNombre;
@@ -490,21 +505,21 @@ public class ControladorComida {
     public void textoEnDetalleCambiado(javax.swing.event.DocumentEvent e) {
         if (jTextDetalle.getText().length()<501) {
             isOkDetalle = true;
-            if (comida.getNombre() != null) {
-                isDetalleModified = !comida.getNombre().equals(jTextFieldNombre.getText());
+            if (comida != null) {
+                isDetalleModified = !comida.getNombre().equals(jTextDetalle.getText());
                 estadoBttnGuardar();
             }
-            if (jTextFieldNombre.getText().isEmpty()) {
+            if (jTextDetalle.getText().isEmpty()) {
                 isOkDetalle = false;
-            }
+            } else jButtonLimpiarForm.setEnabled(true);
             if (isThreadDetalle) {
-                manejadorAnimacionLBL.detenerAnimacion(jLabelNombre);
+                manejadorAnimacionLBL.detenerAnimacion(jLabelDetalle);
                 isThreadDetalle = !isThreadDetalle;
             }
         } else {
             isOkDetalle = false;
             if (!isThreadDetalle) {
-                manejadorAnimacionLBL.crearAnimacion("nombre", jLabelNombre, 3, crgbe);
+                manejadorAnimacionLBL.crearAnimacion("nombre", jLabelDetalle, 3, crgbe);
                 isThreadDetalle = !isThreadDetalle;
             }
         }

@@ -153,8 +153,8 @@ public class DietaComidaData {
     
     public List<Dieta> obtenerDietasDeComida(int idComida) {//id de materia
 
-        List<Dieta> alumnos = new ArrayList<>();
-        String sql = "SELECT d.idDieta, d.nombre, d.idPaciente, d.fechaInicio, d.pesoInicial, d.pesoActual, d.fechaFinal, d.estado FROM nutris.dietacomida AS dc, nutris.dieta AS d WHERE dc.idDieta = d.idDieta AND dc.idMateria = ?";
+        List<Dieta> dietas = new ArrayList<>();
+        String sql = "SELECT d.idDieta, d.nombre, d.idPaciente, d.fechaInicio, d.pesoInicial, d.pesoActual, d.fechaFinal, d.estado FROM nutris.dietacomida AS dc, nutris.dieta AS d WHERE dc.idDieta = d.idDieta AND dc.idComida = ?";
 //        String sql1 = "SELECT d.idDieta, d.nombre, d.idPaciente, d.fechaInicio, d.pesoInicial, d.pesoActual, d.fechaFinal, d.estado FROM nutris.dietacomida INNER JOIN nutris. ON inscripcion.idMateria = materia.idMateria INNER JOIN dieta ON inscripcion.idDieta = ?";
 
         try (PreparedStatement ps = con.prepareStatement(sql);) {

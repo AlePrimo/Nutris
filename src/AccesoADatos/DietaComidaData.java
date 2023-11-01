@@ -102,20 +102,31 @@ public class DietaComidaData {
     }
     
     public Horario obtenerHorarioDietaComida(int idComida, int idDieta){
-        String sql = "Select horario from nutris.dietaComida where idComida = ? AND idDieta = ?";
+        System.out.println("idComida: "+idComida+" - idDieta: "+idDieta);
+        String sql = "SELECT UPPER(horario) FROM nutris.dietacomida WHERE idComida = ? AND idDieta = ?";
         try (PreparedStatement ps = con.prepareStatement(sql);) {
             ps.setInt(1, idComida);
             ps.setInt(2, idDieta);
-            ps.executeQuery();
-                if (rs.next()) {
-                    dietaComi.add(extraerAlumnoDelResulset(rs));
+            try(ResultSet rs = ps.executeQuery();){
+//                System.out.println("-------------");
                 
-            }
-
+                if (rs.next()){
+//                    System.out.println("rs de horario: "+rs.getString("horario"));
+                
+                    for (Horario h : Horario.values()) 
+                        if(h.name().equals(rs.getString("horario"))) {
+//                            System.out.println("h: "+ h);
+                            return h;
+                        }
+                }else{ 
+                    System.out.println("else");
+                    return null;    
+            }}
         } catch (SQLException ex) {
-            showMessage("Error al obtener Inscripciones: " + ex.getMessage());
+            showMessage("Error al obtener Horario: " + ex.getMessage());
+            return null;
         }
-        return alumnos;
+        return null;
     }
 
     public List<DietaComida> ListarTodoDietasComidas() {

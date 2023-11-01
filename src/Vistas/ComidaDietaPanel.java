@@ -461,7 +461,7 @@ public class ComidaDietaPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonSalirMouseExited
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
-        controladorComidaDietaPanel.salirMateriaActionPerformed(evt);
+        controladorComidaDietaPanel.salirComidaDietaActionPerformed(evt);
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jListComidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListComidaMouseClicked

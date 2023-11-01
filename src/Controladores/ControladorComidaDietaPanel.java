@@ -32,6 +32,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import nutris.Conexion;
+import nutris.Nutris;
 
 /**
  *
@@ -76,6 +77,8 @@ public class ControladorComidaDietaPanel {
     private JPanel jPanelAgregarQuitar;
     private int n1;
     private int n2;
+    private int selectedIndexComida;
+    private int selectedIndexDieta;
 
 //    private final Efecto efecto;
     public ControladorComidaDietaPanel(ComidaDietaPanel comidaDietaPanel) {
@@ -106,6 +109,8 @@ public class ControladorComidaDietaPanel {
         listModelComida = comidaDietaPanel.getListModelComida();
         listModelDieta = comidaDietaPanel.getListModelDieta();
 
+        selectedIndexComida = 0;
+        selectedIndexComida = 0;
         try {
             comidaData = new ComidaData(Conexion.getConexion(driverDB));
             dietaData = new DietaData(Conexion.getConexion(driverDB));
@@ -115,6 +120,11 @@ public class ControladorComidaDietaPanel {
         }
         
         evaluarCondiciones();
+        dietas = dietaData.listarDietas();
+        jListDieta.setSelectedIndex(0);
+        System.out.println("dieta: "+dieta);
+        System.out.println("comida: "+comida);
+         
     }
 
     private void evaluarCondiciones() {
@@ -155,52 +165,59 @@ public class ControladorComidaDietaPanel {
             }
         }
         cargarDieta(n1);
+        System.out.println("evDieta "+dieta);
         cargarComida(n2);
     }
 
     private void cargarComida(int n) {
 //        if(n>0)listModelComida.clear();
+        System.out.println("index Dieta: "+jListDieta.getSelectedIndex());
+        System.out.println("nComida: "+n);
         switch (n) {
             case 0:
                 comidas = comidaData.obtenerComidas();
                 break;
             case 1:
-                comidas = dietaComidaData.ListarComidasEnDieta(jListDieta.getSelectedIndex());
+                System.out.println("switchComida: "+jListDieta.getSelectedIndex());
+                comidas = dietaComidaData.ListarComidasEnDieta(jListDieta.getSelectedIndex());  //(dieta.getIdDieta());  //(jListDieta.getSelectedIndex());
                 break;
             case 2:
-                comidas = dietaComidaData.ListarNoComidasEnDieta(jListDieta.getSelectedIndex());
+                comidas = dietaComidaData.ListarNoComidasEnDieta(jListDieta.getSelectedIndex());    //(dieta.getIdDieta());    //(jListDieta.getSelectedIndex());
         }
         comidas.forEach(c -> listModelComida.addElement(c));
+        
     }
 
     private void cargarDieta(int n) {
 //        if(n>0)listModelDieta.clear();
+        System.out.println("nDieta: "+n);
         switch (n) {
             case 0:
                 dietas = dietaData.listarDietas();
+                System.out.println("dietaSwitch: "+dieta);
                 break;
             case 1:
-                dietas = dietaComidaData.ListarDietasDeComida(jListComida.getSelectedIndex());
+                dietas = dietaComidaData.ListarDietasDeComida(comida.getIdComida());   //(jListComida.getSelectedIndex());
                 break;
             case 2:
-                dietas = dietaComidaData.ListarNoDietasDeComida(jListComida.getSelectedIndex());
+                dietas = dietaComidaData.ListarNoDietasDeComida(comida.getIdComida());  //(jListComida.getSelectedIndex());
         }
         dietas.forEach(d -> listModelDieta.addElement(d));
     }
 
-    public void salirMateriaActionPerformed(ActionEvent evt) {
+    public void salirComidaDietaActionPerformed(ActionEvent evt) {
+        System.exit(0);
+    }
+
+    public void nuevoComidaDietaActionPerformed(ActionEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void nuevoMateriaActionPerformed(ActionEvent evt) {
+    public void eliminarComidaDietaActionPerformed(ActionEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void eliminarMateriaActionPerformed(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void guardarMateriaActionPerformed(ActionEvent evt) {
+    public void guardarComidaDietaActionPerformed(ActionEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -229,11 +246,11 @@ public class ControladorComidaDietaPanel {
     }
 
     public void buttonSalirMouseEntered(MouseEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void buttonSalirMouseExited(MouseEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void buttonNuevoFocusGained(FocusEvent evt) {
@@ -261,11 +278,11 @@ public class ControladorComidaDietaPanel {
     }
 
     public void buttonSalirFocusGained(FocusEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void buttonSalirFocusLost(FocusEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void labelVolverMouseClicked(MouseEvent evt) {
@@ -274,33 +291,35 @@ public class ControladorComidaDietaPanel {
 
     public void listComidaMouseClicked(MouseEvent evt) {
 //        if (evt.getClickCount() == 2) {
-        int selectedIndex = jListComida.getSelectedIndex();
-        if (selectedIndex >= 0) {
-            comida = (Comida) jListComida.getModel().getElementAt(selectedIndex);
+        selectedIndexComida = jListComida.getSelectedIndex();
+        if (selectedIndexComida >= 0) {
+            comida = (Comida) jListComida.getModel().getElementAt(selectedIndexComida);
             System.out.println("Comida seleccionada: " + comida);
-        }
-//        }
         if (n1 > 0) {
             listModelDieta.clear();
             evaluarCondiciones();
         }
-        if(comida != null && dieta != null){
-            dietaComidaData.
+        if(comida != null && dieta != null) System.out.println("horario: "+dietaComidaData.obtenerHorarioDietaComida(comida.getIdComida(), dieta.getIdDieta()));
+        if(comida != null && dieta != null) jComboBoxHorario.setSelectedItem(dietaComidaData.obtenerHorarioDietaComida(comida.getIdComida(), dieta.getIdDieta()));
         }
+//        }
+        
     }
 
     public void listDietaMouseClicked(MouseEvent evt) {
 //        if (evt.getClickCount() == 2) {
-        int selectedIndex = jListDieta.getSelectedIndex();
-        if (selectedIndex >= 0) {
-            dieta = (Dieta) jListDieta.getModel().getElementAt(selectedIndex);
+        selectedIndexDieta = jListDieta.getSelectedIndex();
+        if (selectedIndexDieta >= 0) {
+            dieta = (Dieta) jListDieta.getModel().getElementAt(selectedIndexDieta);
             System.out.println("Dieta seleccionada: " + dieta);
-        }
-//        }
         if (n2 > 0) {
             listModelComida.clear();
             evaluarCondiciones();
         }
+        if(comida != null && dieta != null) System.out.println("horario: "+dietaComidaData.obtenerHorarioDietaComida(comida.getIdComida(), dieta.getIdDieta()));
+        if(comida != null && dieta != null) jComboBoxHorario.setSelectedItem(dietaComidaData.obtenerHorarioDietaComida(comida.getIdComida(), dieta.getIdDieta()));
+        }
+//        }
     }
 
     public void checkBoxComidaDietaActionPerformed(ActionEvent evt) {
